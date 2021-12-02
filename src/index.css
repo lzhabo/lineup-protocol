@@ -3,6 +3,7 @@ body {
     font-family: "Poppins", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: #0B0B0D;
 }
 
 #root {
@@ -15,18 +16,18 @@ body {
 
 @font-face {
     font-family: 'Poppins';
-    src: local('Poppins'), url(../fonts/Poppins-Regular.ttf) format('truetype');
+    src: local('Poppins'), url(assets/fonts/Poppins-Regular.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: local('Poppins'), url(../fonts/Poppins-Medium.ttf) format('truetype');
+    src: local('Poppins'), url(assets/fonts/Poppins-Medium.ttf) format('truetype');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: local('Poppins'), url(../fonts/Poppins-SemiBold.ttf) format('truetype');
+    src: local('Poppins'), url(assets/fonts/Poppins-SemiBold.ttf) format('truetype');
     font-weight: 600;
 }
 
