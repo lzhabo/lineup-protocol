@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import React from "react";
 
 const Button = styled.button<{ borderRadius?: string; clickable?: boolean }>`
   display: flex;
