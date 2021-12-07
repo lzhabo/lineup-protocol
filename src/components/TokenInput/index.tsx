@@ -7,13 +7,14 @@ import BN from "@src/utils/BN";
 import AmountInput from "@components/TokenInput/AmountInput";
 import SizedBox from "@components/SizedBox";
 
-interface IProps {}
+interface IProps {
+  divided?: boolean;
+}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 const Divider = styled.div`
   width: 100%;
   height: 1px;
@@ -21,7 +22,7 @@ const Divider = styled.div`
   box-sizing: border-box;
   margin: 8px 0;
 `;
-const TokenInput: React.FC<IProps> = () => {
+const TokenInput: React.FC<IProps> = ({ divided }) => {
   return (
     <Root>
       <Row alignItems="center" justifyContent="space-between">
@@ -34,8 +35,7 @@ const TokenInput: React.FC<IProps> = () => {
           onChange={(n) => null}
         />
       </Row>
-      <SizedBox height={8} />
-      <Divider />
+      {divided ? <Divider /> : <SizedBox height={8} />}
     </Root>
   );
 };
