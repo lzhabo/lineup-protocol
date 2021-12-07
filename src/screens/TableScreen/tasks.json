@@ -1,0 +1,2357 @@
+[
+  {
+    "id": "40025",
+    "title": null,
+    "startDate": "2021-11-12T11:55:46.425+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы",
+    "children": [
+      {
+        "id": "40033",
+        "title": null,
+        "startDate": "2021-11-12T11:58:00.512+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "47516",
+        "title": null,
+        "startDate": "2021-11-17T08:41:51.249+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "children": [
+          {
+            "id": "40033",
+            "title": null,
+            "startDate": "2021-11-12T11:58:00.512+00:00",
+            "progress": 80,
+            "initiatorName": null,
+            "assigneeName": null,
+            "taskType": "Заполнение формы"
+          },
+          {
+            "id": "47516",
+            "title": null,
+            "startDate": "2021-11-17T08:41:51.249+00:00",
+            "progress": 80,
+            "initiatorName": null,
+            "assigneeName": null,
+            "taskType": "Заполнение формы"
+          },
+          {
+            "id": "47524",
+            "title": null,
+            "startDate": "2021-11-17T08:43:54.076+00:00",
+            "progress": 80,
+            "initiatorName": null,
+            "assigneeName": null,
+            "children": [
+              {
+                "id": "40033",
+                "title": null,
+                "startDate": "2021-11-12T11:58:00.512+00:00",
+                "progress": 80,
+                "initiatorName": null,
+                "assigneeName": null,
+                "config": {
+                  "name": "",
+                  "block": "",
+                  "schema": {
+                    "schema": {
+                      "keys": [
+                        {
+                          "key": "property_d6bef4ab",
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "pointer": "property_d6bef4ab"
+                        }
+                      ],
+                      "required": [],
+                      "properties": {
+                        "property_d6bef4ab": {
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "default": "",
+                          "pattern": "",
+                          "isStatic": true,
+                          "isInherit": false
+                        }
+                      }
+                    },
+                    "isValid": true,
+                    "extraSchemas": [
+                      {
+                        "type": "display",
+                        "schema": {
+                          "property_d6bef4ab": {
+                            "isText": "",
+                            "formula": ""
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "display",
+                        "schema": {
+                          "": {
+                            "tabs": [
+                              {
+                                "id": "default",
+                                "title": "",
+                                "properties": [
+                                  "property_d6bef4ab"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "isStatic": false
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {
+                          "": {
+                            "keys": []
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {},
+                        "isStatic": false
+                      },
+                      {
+                        "type": "formulas",
+                        "schema": {},
+                        "isStatic": true
+                      }
+                    ]
+                  },
+                  "subType": "FillTheForm",
+                  "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                  "blockKeys": "",
+                  "description": ""
+                },
+                "taskType": "Заполнение формы"
+              },
+              {
+                "id": "47516",
+                "title": null,
+                "startDate": "2021-11-17T08:41:51.249+00:00",
+                "progress": 80,
+                "initiatorName": null,
+                "assigneeName": null,
+                "children": [
+                  {
+                    "id": "40033",
+                    "title": null,
+                    "startDate": "2021-11-12T11:58:00.512+00:00",
+                    "progress": 80,
+                    "initiatorName": null,
+                    "assigneeName": null,
+                    "config": {
+                      "name": "",
+                      "block": "",
+                      "schema": {
+                        "schema": {
+                          "keys": [
+                            {
+                              "key": "property_d6bef4ab",
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "pointer": "property_d6bef4ab"
+                            }
+                          ],
+                          "required": [],
+                          "properties": {
+                            "property_d6bef4ab": {
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "default": "",
+                              "pattern": "",
+                              "isStatic": true,
+                              "isInherit": false
+                            }
+                          }
+                        },
+                        "isValid": true,
+                        "extraSchemas": [
+                          {
+                            "type": "display",
+                            "schema": {
+                              "property_d6bef4ab": {
+                                "isText": "",
+                                "formula": ""
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "display",
+                            "schema": {
+                              "": {
+                                "tabs": [
+                                  {
+                                    "id": "default",
+                                    "title": "",
+                                    "properties": [
+                                      "property_d6bef4ab"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "isStatic": false
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {
+                              "": {
+                                "keys": []
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {},
+                            "isStatic": false
+                          },
+                          {
+                            "type": "formulas",
+                            "schema": {},
+                            "isStatic": true
+                          }
+                        ]
+                      },
+                      "subType": "FillTheForm",
+                      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                      "blockKeys": "",
+                      "description": ""
+                    },
+                    "taskType": "Заполнение формы"
+                  },
+                  {
+                    "id": "47516",
+                    "title": null,
+                    "startDate": "2021-11-17T08:41:51.249+00:00",
+                    "progress": 80,
+                    "initiatorName": null,
+                    "assigneeName": null,
+                    "config": {
+                      "name": "",
+                      "block": "",
+                      "schema": {
+                        "schema": {
+                          "keys": [
+                            {
+                              "key": "property_d6bef4ab",
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "pointer": "property_d6bef4ab"
+                            }
+                          ],
+                          "required": [],
+                          "properties": {
+                            "property_d6bef4ab": {
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "default": "",
+                              "pattern": "",
+                              "isStatic": true,
+                              "isInherit": false
+                            }
+                          }
+                        },
+                        "isValid": true,
+                        "extraSchemas": [
+                          {
+                            "type": "display",
+                            "schema": {
+                              "property_d6bef4ab": {
+                                "isText": "",
+                                "formula": ""
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "display",
+                            "schema": {
+                              "": {
+                                "tabs": [
+                                  {
+                                    "id": "default",
+                                    "title": "",
+                                    "properties": [
+                                      "property_d6bef4ab"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "isStatic": false
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {
+                              "": {
+                                "keys": []
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {},
+                            "isStatic": false
+                          },
+                          {
+                            "type": "formulas",
+                            "schema": {},
+                            "isStatic": true
+                          }
+                        ]
+                      },
+                      "subType": "FillTheForm",
+                      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                      "blockKeys": "",
+                      "description": ""
+                    },
+                    "taskType": "Заполнение формы"
+                  },
+                  {
+                    "id": "47524",
+                    "title": null,
+                    "startDate": "2021-11-17T08:43:54.076+00:00",
+                    "progress": 80,
+                    "initiatorName": null,
+                    "assigneeName": null,
+                    "config": {
+                      "name": "",
+                      "block": "",
+                      "schema": {
+                        "schema": {
+                          "keys": [
+                            {
+                              "key": "property_d6bef4ab",
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "pointer": "property_d6bef4ab"
+                            }
+                          ],
+                          "required": [],
+                          "properties": {
+                            "property_d6bef4ab": {
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "default": "",
+                              "pattern": "",
+                              "isStatic": true,
+                              "isInherit": false
+                            }
+                          }
+                        },
+                        "isValid": true,
+                        "extraSchemas": [
+                          {
+                            "type": "display",
+                            "schema": {
+                              "property_d6bef4ab": {
+                                "isText": "",
+                                "formula": ""
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "display",
+                            "schema": {
+                              "": {
+                                "tabs": [
+                                  {
+                                    "id": "default",
+                                    "title": "",
+                                    "properties": [
+                                      "property_d6bef4ab"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "isStatic": false
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {
+                              "": {
+                                "keys": []
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {},
+                            "isStatic": false
+                          },
+                          {
+                            "type": "formulas",
+                            "schema": {},
+                            "isStatic": true
+                          }
+                        ]
+                      },
+                      "subType": "FillTheForm",
+                      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                      "blockKeys": "",
+                      "description": ""
+                    },
+                    "taskType": "Заполнение формы"
+                  },
+                  {
+                    "id": "50012",
+                    "title": "тест",
+                    "startDate": "2021-11-19T15:29:58.143+00:00",
+                    "progress": 80,
+                    "initiatorName": null,
+                    "assigneeName": null,
+                    "config": {
+                      "name": "",
+                      "block": "",
+                      "schema": {
+                        "schema": {
+                          "keys": [
+                            {
+                              "key": "property_d6bef4ab",
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "pointer": "property_d6bef4ab"
+                            }
+                          ],
+                          "required": [],
+                          "properties": {
+                            "property_d6bef4ab": {
+                              "type": "string",
+                              "title": "Новый атрибут",
+                              "default": "",
+                              "pattern": "",
+                              "isStatic": true,
+                              "isInherit": false
+                            }
+                          }
+                        },
+                        "isValid": true,
+                        "extraSchemas": [
+                          {
+                            "type": "display",
+                            "schema": {
+                              "property_d6bef4ab": {
+                                "isText": "",
+                                "formula": ""
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "display",
+                            "schema": {
+                              "": {
+                                "tabs": [
+                                  {
+                                    "id": "default",
+                                    "title": "",
+                                    "properties": [
+                                      "property_d6bef4ab"
+                                    ]
+                                  }
+                                ]
+                              }
+                            },
+                            "isStatic": false
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {
+                              "": {
+                                "keys": []
+                              }
+                            },
+                            "isStatic": true
+                          },
+                          {
+                            "type": "validation",
+                            "schema": {},
+                            "isStatic": false
+                          },
+                          {
+                            "type": "formulas",
+                            "schema": {},
+                            "isStatic": true
+                          }
+                        ]
+                      },
+                      "subType": "FillTheForm",
+                      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                      "blockKeys": "",
+                      "description": ""
+                    },
+                    "taskType": "Заполнение формы"
+                  }
+                ],
+                "config": {
+                  "name": "",
+                  "block": "",
+                  "schema": {
+                    "schema": {
+                      "keys": [
+                        {
+                          "key": "property_d6bef4ab",
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "pointer": "property_d6bef4ab"
+                        }
+                      ],
+                      "required": [],
+                      "properties": {
+                        "property_d6bef4ab": {
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "default": "",
+                          "pattern": "",
+                          "isStatic": true,
+                          "isInherit": false
+                        }
+                      }
+                    },
+                    "isValid": true,
+                    "extraSchemas": [
+                      {
+                        "type": "display",
+                        "schema": {
+                          "property_d6bef4ab": {
+                            "isText": "",
+                            "formula": ""
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "display",
+                        "schema": {
+                          "": {
+                            "tabs": [
+                              {
+                                "id": "default",
+                                "title": "",
+                                "properties": [
+                                  "property_d6bef4ab"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "isStatic": false
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {
+                          "": {
+                            "keys": []
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {},
+                        "isStatic": false
+                      },
+                      {
+                        "type": "formulas",
+                        "schema": {},
+                        "isStatic": true
+                      }
+                    ]
+                  },
+                  "subType": "FillTheForm",
+                  "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                  "blockKeys": "",
+                  "description": ""
+                },
+                "taskType": "Заполнение формы"
+              },
+              {
+                "id": "47524",
+                "title": null,
+                "startDate": "2021-11-17T08:43:54.076+00:00",
+                "progress": 80,
+                "initiatorName": null,
+                "assigneeName": null,
+                "config": {
+                  "name": "",
+                  "block": "",
+                  "schema": {
+                    "schema": {
+                      "keys": [
+                        {
+                          "key": "property_d6bef4ab",
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "pointer": "property_d6bef4ab"
+                        }
+                      ],
+                      "required": [],
+                      "properties": {
+                        "property_d6bef4ab": {
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "default": "",
+                          "pattern": "",
+                          "isStatic": true,
+                          "isInherit": false
+                        }
+                      }
+                    },
+                    "isValid": true,
+                    "extraSchemas": [
+                      {
+                        "type": "display",
+                        "schema": {
+                          "property_d6bef4ab": {
+                            "isText": "",
+                            "formula": ""
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "display",
+                        "schema": {
+                          "": {
+                            "tabs": [
+                              {
+                                "id": "default",
+                                "title": "",
+                                "properties": [
+                                  "property_d6bef4ab"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "isStatic": false
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {
+                          "": {
+                            "keys": []
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {},
+                        "isStatic": false
+                      },
+                      {
+                        "type": "formulas",
+                        "schema": {},
+                        "isStatic": true
+                      }
+                    ]
+                  },
+                  "subType": "FillTheForm",
+                  "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                  "blockKeys": "",
+                  "description": ""
+                },
+                "taskType": "Заполнение формы"
+              },
+              {
+                "id": "50012",
+                "title": "тест",
+                "startDate": "2021-11-19T15:29:58.143+00:00",
+                "progress": 80,
+                "initiatorName": null,
+                "assigneeName": null,
+                "config": {
+                  "name": "",
+                  "block": "",
+                  "schema": {
+                    "schema": {
+                      "keys": [
+                        {
+                          "key": "property_d6bef4ab",
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "pointer": "property_d6bef4ab"
+                        }
+                      ],
+                      "required": [],
+                      "properties": {
+                        "property_d6bef4ab": {
+                          "type": "string",
+                          "title": "Новый атрибут",
+                          "default": "",
+                          "pattern": "",
+                          "isStatic": true,
+                          "isInherit": false
+                        }
+                      }
+                    },
+                    "isValid": true,
+                    "extraSchemas": [
+                      {
+                        "type": "display",
+                        "schema": {
+                          "property_d6bef4ab": {
+                            "isText": "",
+                            "formula": ""
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "display",
+                        "schema": {
+                          "": {
+                            "tabs": [
+                              {
+                                "id": "default",
+                                "title": "",
+                                "properties": [
+                                  "property_d6bef4ab"
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "isStatic": false
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {
+                          "": {
+                            "keys": []
+                          }
+                        },
+                        "isStatic": true
+                      },
+                      {
+                        "type": "validation",
+                        "schema": {},
+                        "isStatic": false
+                      },
+                      {
+                        "type": "formulas",
+                        "schema": {},
+                        "isStatic": true
+                      }
+                    ]
+                  },
+                  "subType": "FillTheForm",
+                  "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+                  "blockKeys": "",
+                  "description": ""
+                },
+                "taskType": "Заполнение формы"
+              }
+            ],
+            "taskType": "Заполнение формы"
+          },
+          {
+            "id": "50012",
+            "title": "тест",
+            "startDate": "2021-11-19T15:29:58.143+00:00",
+            "progress": 80,
+            "initiatorName": null,
+            "assigneeName": null,
+            "config": {
+              "name": "",
+              "block": "",
+              "schema": {
+                "schema": {
+                  "keys": [
+                    {
+                      "key": "property_d6bef4ab",
+                      "type": "string",
+                      "title": "Новый атрибут",
+                      "pointer": "property_d6bef4ab"
+                    }
+                  ],
+                  "required": [],
+                  "properties": {
+                    "property_d6bef4ab": {
+                      "type": "string",
+                      "title": "Новый атрибут",
+                      "default": "",
+                      "pattern": "",
+                      "isStatic": true,
+                      "isInherit": false
+                    }
+                  }
+                },
+                "isValid": true,
+                "extraSchemas": [
+                  {
+                    "type": "display",
+                    "schema": {
+                      "property_d6bef4ab": {
+                        "isText": "",
+                        "formula": ""
+                      }
+                    },
+                    "isStatic": true
+                  },
+                  {
+                    "type": "display",
+                    "schema": {
+                      "": {
+                        "tabs": [
+                          {
+                            "id": "default",
+                            "title": "",
+                            "properties": [
+                              "property_d6bef4ab"
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "isStatic": false
+                  },
+                  {
+                    "type": "validation",
+                    "schema": {
+                      "": {
+                        "keys": []
+                      }
+                    },
+                    "isStatic": true
+                  },
+                  {
+                    "type": "validation",
+                    "schema": {},
+                    "isStatic": false
+                  },
+                  {
+                    "type": "formulas",
+                    "schema": {},
+                    "isStatic": true
+                  }
+                ]
+              },
+              "subType": "FillTheForm",
+              "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+              "blockKeys": "",
+              "description": ""
+            },
+            "taskType": "Заполнение формы"
+          }
+        ],
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "47524",
+        "title": null,
+        "startDate": "2021-11-17T08:43:54.076+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "50012",
+        "title": "тест",
+        "startDate": "2021-11-19T15:29:58.143+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      }
+    ]
+  },
+  {
+    "id": "40033",
+    "title": null,
+    "startDate": "2021-11-12T11:58:00.512+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "47516",
+    "title": null,
+    "startDate": "2021-11-17T08:41:51.249+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "47524",
+    "title": null,
+    "startDate": "2021-11-17T08:43:54.076+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "50012",
+    "title": "тест",
+    "startDate": "2021-11-19T15:29:58.143+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы",
+    "children": [
+      {
+        "id": "52520",
+        "title": "тест",
+        "startDate": "2021-11-22T12:57:59.100+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "52534",
+        "title": "тест",
+        "startDate": "2021-11-22T12:58:24.400+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_d6bef4ab",
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "pointer": "property_d6bef4ab"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_d6bef4ab": {
+                  "type": "string",
+                  "title": "Новый атрибут",
+                  "default": "",
+                  "pattern": "",
+                  "isStatic": true,
+                  "isInherit": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_d6bef4ab": {
+                    "isText": "",
+                    "formula": ""
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_d6bef4ab"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              },
+              {
+                "type": "formulas",
+                "schema": {},
+                "isStatic": true
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "52548",
+        "title": null,
+        "startDate": "2021-11-22T12:58:48.105+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_725ad66c",
+                  "type": "object",
+                  "title": "Новый атрибут",
+                  "pointer": "property_725ad66c"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_725ad66c": {
+                  "type": "object",
+                  "title": "Новый атрибут",
+                  "isStatic": true,
+                  "required": [],
+                  "isInherit": false,
+                  "properties": {},
+                  "dependentRequired": {},
+                  "additionalProperties": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_725ad66c": {
+                    "properties": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_725ad66c"
+                        ]
+                      },
+                      {
+                        "id": "tab_afbf1f40",
+                        "title": "Новая вкладка",
+                        "properties": []
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      },
+      {
+        "id": "52558",
+        "title": null,
+        "startDate": "2021-11-22T12:58:53.134+00:00",
+        "progress": 80,
+        "initiatorName": null,
+        "assigneeName": null,
+        "config": {
+          "name": "",
+          "block": "",
+          "schema": {
+            "schema": {
+              "keys": [
+                {
+                  "key": "property_725ad66c",
+                  "type": "object",
+                  "title": "Новый атрибут",
+                  "pointer": "property_725ad66c"
+                }
+              ],
+              "required": [],
+              "properties": {
+                "property_725ad66c": {
+                  "type": "object",
+                  "title": "Новый атрибут",
+                  "isStatic": true,
+                  "required": [],
+                  "isInherit": false,
+                  "properties": {},
+                  "dependentRequired": {},
+                  "additionalProperties": false
+                }
+              }
+            },
+            "isValid": true,
+            "extraSchemas": [
+              {
+                "type": "display",
+                "schema": {
+                  "property_725ad66c": {
+                    "properties": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "display",
+                "schema": {
+                  "": {
+                    "tabs": [
+                      {
+                        "id": "default",
+                        "title": "",
+                        "properties": [
+                          "property_725ad66c"
+                        ]
+                      },
+                      {
+                        "id": "tab_afbf1f40",
+                        "title": "Новая вкладка",
+                        "properties": []
+                      }
+                    ]
+                  }
+                },
+                "isStatic": false
+              },
+              {
+                "type": "validation",
+                "schema": {
+                  "": {
+                    "keys": []
+                  }
+                },
+                "isStatic": true
+              },
+              {
+                "type": "validation",
+                "schema": {},
+                "isStatic": false
+              }
+            ]
+          },
+          "subType": "FillTheForm",
+          "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+          "blockKeys": "",
+          "description": ""
+        },
+        "taskType": "Заполнение формы"
+      }
+    ]
+  },
+  {
+    "id": "52520",
+    "title": "тест",
+    "startDate": "2021-11-22T12:57:59.100+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "52534",
+    "title": "тест",
+    "startDate": "2021-11-22T12:58:24.400+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_d6bef4ab",
+              "type": "string",
+              "title": "Новый атрибут",
+              "pointer": "property_d6bef4ab"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_d6bef4ab": {
+              "type": "string",
+              "title": "Новый атрибут",
+              "default": "",
+              "pattern": "",
+              "isStatic": true,
+              "isInherit": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_d6bef4ab": {
+                "isText": "",
+                "formula": ""
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_d6bef4ab"
+                    ]
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          },
+          {
+            "type": "formulas",
+            "schema": {},
+            "isStatic": true
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "52548",
+    "title": null,
+    "startDate": "2021-11-22T12:58:48.105+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_725ad66c",
+              "type": "object",
+              "title": "Новый атрибут",
+              "pointer": "property_725ad66c"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_725ad66c": {
+              "type": "object",
+              "title": "Новый атрибут",
+              "isStatic": true,
+              "required": [],
+              "isInherit": false,
+              "properties": {},
+              "dependentRequired": {},
+              "additionalProperties": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_725ad66c": {
+                "properties": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_725ad66c"
+                    ]
+                  },
+                  {
+                    "id": "tab_afbf1f40",
+                    "title": "Новая вкладка",
+                    "properties": []
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  },
+  {
+    "id": "52558",
+    "title": null,
+    "startDate": "2021-11-22T12:58:53.134+00:00",
+    "progress": 80,
+    "initiatorName": null,
+    "assigneeName": null,
+    "config": {
+      "name": "",
+      "block": "",
+      "schema": {
+        "schema": {
+          "keys": [
+            {
+              "key": "property_725ad66c",
+              "type": "object",
+              "title": "Новый атрибут",
+              "pointer": "property_725ad66c"
+            }
+          ],
+          "required": [],
+          "properties": {
+            "property_725ad66c": {
+              "type": "object",
+              "title": "Новый атрибут",
+              "isStatic": true,
+              "required": [],
+              "isInherit": false,
+              "properties": {},
+              "dependentRequired": {},
+              "additionalProperties": false
+            }
+          }
+        },
+        "isValid": true,
+        "extraSchemas": [
+          {
+            "type": "display",
+            "schema": {
+              "property_725ad66c": {
+                "properties": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "display",
+            "schema": {
+              "": {
+                "tabs": [
+                  {
+                    "id": "default",
+                    "title": "",
+                    "properties": [
+                      "property_725ad66c"
+                    ]
+                  },
+                  {
+                    "id": "tab_afbf1f40",
+                    "title": "Новая вкладка",
+                    "properties": []
+                  }
+                ]
+              }
+            },
+            "isStatic": false
+          },
+          {
+            "type": "validation",
+            "schema": {
+              "": {
+                "keys": []
+              }
+            },
+            "isStatic": true
+          },
+          {
+            "type": "validation",
+            "schema": {},
+            "isStatic": false
+          }
+        ]
+      },
+      "subType": "FillTheForm",
+      "assignee": "bb743523-f390-4a08-834e-9d1c592ccec3",
+      "blockKeys": "",
+      "description": ""
+    },
+    "taskType": "Заполнение формы"
+  }
+]

@@ -4,6 +4,7 @@ import { runInAction } from "mobx";
 
 export enum ROUTES {
   ROOT = "/",
+  TABLE = "/table",
 }
 
 export default class RouterStore {

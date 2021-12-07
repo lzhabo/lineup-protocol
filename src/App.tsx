@@ -4,6 +4,7 @@ import { ROUTES } from "@stores/RouterStore";
 import styled from "@emotion/styled";
 import Header from "@components/Header";
 import SwapScreen from "@screens/SwapScreen";
+import TableScreen from "@screens/TableScreen";
 
 interface IProps {}
 
@@ -25,6 +26,7 @@ const App: React.FunctionComponent<IProps> = () => {
       <Routes>
         {/*раньше нужно было exact писать, теперь если нужно много совпадений, то path="home/*"*/}
         <Route path={ROUTES.ROOT} element={<SwapScreen />} />
+        <Route path={ROUTES.TABLE} element={<TableScreen />} />
       </Routes>
     </Root>
   );
