@@ -48,7 +48,9 @@ const SwapScreen: React.FC<IProps> = () => {
           <div className="balance-selector">
             <div>Balance: 1,230.49502</div>
             {percents.map((p) => (
-              <div style={{ color: "#666DE3" }}>{p}</div>
+              <div key={p} style={{ color: "#666DE3" }}>
+                {p}
+              </div>
             ))}
           </div>
           <div>~ $69,682.0</div>

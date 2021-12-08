@@ -4,6 +4,12 @@ import * as avatar from "identity-img";
 import SizedBox from "@components/SizedBox";
 import { ReactComponent as Arrow } from "@src/assets/icons/arrowDown.svg";
 import centerEllipsis from "@src/utils/centerEllipsis";
+import { useWeb3React } from "@web3-react/core";
+import { InjectedConnector } from "@web3-react/injected-connector";
+
+export const injected = new InjectedConnector({
+  supportedChainIds: [1, 3, 4, 5, 42],
+});
 
 interface IProps {}
 
@@ -35,18 +41,30 @@ const Address = styled.div`
 `;
 
 const ConnectWalletButton: React.FC<IProps> = () => {
+  const { active, account, library, connector, activate, deactivate } =
+    useWeb3React();
+  const handleConnect = async () => {
+    await activate(injected);
+    console.log(account);
+  };
+
   avatar.config({
     rows: 8,
     cells: 8,
   });
-
   const src = address ? avatar.create(address, { size: 24 * 3 }) : "";
   return (
     <Root>
-      <Avatar src={src} alt="Avatar" />
-      <Address>{centerEllipsis(address, 6)}</Address>
-      <SizedBox width={24} />
-      <Arrow style={{ marginRight: 10 }} />
+      {active ? (
+        <>
+          <Avatar src={src} alt="Avatar" />
+          <Address>{centerEllipsis(account ?? "", 6)}</Address>
+          <SizedBox width={24} />
+          <Arrow style={{ marginRight: 10 }} />
+        </>
+      ) : (
+        <Address onClick={handleConnect}>Connect</Address>
+      )}
     </Root>
   );
 };

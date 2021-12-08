@@ -1,6 +1,12 @@
 import { RouterStore } from "./index";
 import { makeAutoObservable } from "mobx";
-import SettingsStore from "@stores/SettingsStore";
+import SettingsStore, { ISettingsStoreInitState } from "@stores/SettingsStore";
+import { ITokenStoreInitState } from "@stores/TokenStore";
+
+export interface ISerializedStore {
+  tokenStore: ITokenStoreInitState;
+  settingsStore: ISettingsStoreInitState;
+}
 
 export default class RootStore {
   routerStore = new RouterStore(this);
@@ -8,6 +14,5 @@ export default class RootStore {
 
   constructor() {
     makeAutoObservable(this);
-    // Promise.all([this.cardStore.sync(), this.touchesStore.sync()]).then();
   }
 }
