@@ -1,7 +1,7 @@
 {
   "name": "aye",
   "version": "0.1.0",
-  "homepage": "https://lzhabo.github.io",
+  "homepage": "https://lzhabo.github.io/aye",
   "private": true,
   "dependencies": {
     "@babel/core": "7.12.3",
