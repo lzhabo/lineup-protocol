@@ -2,51 +2,65 @@ import styled from "@emotion/styled";
 import React, { useState } from "react";
 import tradeIcon from "@src/assets/icons/trade.svg";
 import investIcon from "@src/assets/icons/invest.svg";
+import { Link } from "react-router-dom";
 
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
-  background: #1f1e25;
   border-radius: 20px;
-  width: fit-content;
   padding: 4px;
+  width: 100%;
 `;
 const Item = styled.div<{ active: boolean; selectable?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ active }) => (active ? "#666de3" : "transparent")};
-  color: ${({ active }) => (active ? "#FFFFFF" : "#79787D")};
-  border-radius: 16px;
-  padding: 0 30px;
-  height: 32px;
-  width: 134px;
+  color: ${({ active }) => (active ? "#FFFFFF" : "#A2A2C0")};
+  padding: 0 16px;
   box-sizing: border-box;
   cursor: ${({ active }) => (active ? " pointer" : "not-allowed")};
-  img {
-    margin-right: 8px;
-  }
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
 `;
 
 const tabs = [
-  { title: "Trade", route: "trade", icon: tradeIcon, selectable: true },
-  { title: "Invest", route: "invests", icon: investIcon, selectable: false },
+  { title: "Ranking", route: "/", icon: tradeIcon, selectable: true },
+  {
+    title: "Cross-chain swap",
+    route: "/test",
+    icon: investIcon,
+    selectable: false,
+  },
+  {
+    title: "Portfolio calculator",
+    route: "/test",
+    icon: investIcon,
+    selectable: false,
+  },
+  {
+    title: "Watchlist",
+    route: "/test",
+    icon: investIcon,
+    selectable: false,
+  },
 ];
 const Tabs: React.FC<IProps> = () => {
   const [tab, setTab] = useState(0);
   return (
     <Root>
       {tabs.map(({ title, route, icon, selectable }, index) => (
-        <Item
-          active={tab === index}
-          key={route}
-          onClick={() => selectable && setTab(index)}
-          selectable={selectable}
-        >
-          <img src={icon} alt={route} />
-          {title}
-        </Item>
+        <Link to={route} key={route} style={{ textDecoration: "none" }}>
+          <Item
+            active={tab === index}
+            onClick={() => selectable && setTab(index)}
+            selectable={selectable}
+          >
+            {title}
+          </Item>
+        </Link>
       ))}
     </Root>
   );

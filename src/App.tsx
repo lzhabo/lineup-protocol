@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Header from "@components/Header";
-import SwapScreen from "@screens/SwapScreen";
+import RankingScreen from "@screens/RankingScreen/RankingScreen";
 
 interface IProps {}
 
@@ -20,11 +20,12 @@ const App: React.FunctionComponent<IProps> = () => {
   return (
     <Root>
       <Header />
-      <SwapScreen />
+      <RankingScreen />
       {/*<Routes>*/}
       {/*  /!*раньше нужно было exact писать, теперь если нужно много совпадений, то path="home/*"*!/*/}
       {/*  <Route path={ROUTES.ROOT} element={<SwapScreen />} />*/}
-      {/*</Routes>*/}
+      {/*</Routes>
+       */}
     </Root>
   );
 };

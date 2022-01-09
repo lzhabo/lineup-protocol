@@ -1,9 +1,10 @@
 import { RootStore } from "./index";
 import { createBrowserHistory, Location } from "history";
-import { runInAction } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 
 export enum ROUTES {
   ROOT = "/",
+  TEST = "/test",
 }
 
 export default class RouterStore {
@@ -15,6 +16,7 @@ export default class RouterStore {
 
     this.history.listen(({ location }) => this.sync(location));
     this.sync(this.history.location);
+    makeAutoObservable(this);
   }
 
   currentPath: ROUTES = ROUTES.ROOT;

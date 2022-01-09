@@ -6,7 +6,6 @@ import BigNumberInput from "@components/BigNumberInput";
 import BN from "@src/utils/BN";
 import AmountInput from "@components/TokenInput/AmountInput";
 import SizedBox from "@components/SizedBox";
-import { useStores } from "@stores";
 
 interface IProps {
   divided?: boolean;

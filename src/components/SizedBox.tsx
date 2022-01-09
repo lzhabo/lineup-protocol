@@ -1,10 +1,19 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 
-const SizedBox: React.FunctionComponent<{
+interface IProps extends HTMLAttributes<HTMLDivElement> {
   width?: number;
   height?: number;
-}> = ({ width, height }) => (
-  <div style={{ width, height, display: "flex", flex: "0 0 auto" }} />
+}
+
+const SizedBox: React.FunctionComponent<IProps> = ({
+  width,
+  height,
+  ...rest
+}) => (
+  <div
+    style={{ width, height, display: "flex", flex: "0 0 auto", ...rest.style }}
+    {...rest}
+  />
 );
 
 export default SizedBox;

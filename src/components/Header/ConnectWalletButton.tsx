@@ -16,10 +16,10 @@ interface IProps {}
 const Root = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 8px;
-
+  padding: 0 24px;
+  cursor: pointer;
   height: 40px;
-  background: #1f1e25;
+  background: #666de3;
   border-radius: 20px;
 `;
 
@@ -38,11 +38,11 @@ const Address = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: #ffffff;
+  white-space: nowrap;
 `;
 
 const ConnectWalletButton: React.FC<IProps> = () => {
-  const { active, account, library, connector, activate, deactivate } =
-    useWeb3React();
+  const { active, account, activate } = useWeb3React();
   const handleConnect = async () => {
     await activate(injected);
     console.log(account);
@@ -63,7 +63,7 @@ const ConnectWalletButton: React.FC<IProps> = () => {
           <Arrow style={{ marginRight: 10 }} />
         </>
       ) : (
-        <Address onClick={handleConnect}>Connect</Address>
+        <Address onClick={handleConnect}>Connect wallet</Address>
       )}
     </Root>
   );
