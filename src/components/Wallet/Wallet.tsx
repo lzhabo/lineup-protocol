@@ -5,6 +5,13 @@ import { observer } from "mobx-react-lite";
 import LoginModal from "./LoginModal";
 import LoggedInAccountInfo from "@components/Wallet/LoggedInAccountInfo";
 import ConnectWalletButton from "@components/Header/ConnectWalletButton";
+import { useWeb3React } from "@web3-react/core";
+
+import { InjectedConnector } from "@web3-react/injected-connector";
+
+export const injected = new InjectedConnector({
+  supportedChainIds: [1, 3, 4, 5, 42],
+});
 
 interface IProps {}
 
@@ -15,12 +22,19 @@ const Root = styled.div`
 `;
 
 const Wallet: React.FC<IProps> = () => {
+  const { active, account, activate } = useWeb3React();
+  const handleConnect = async () => {
+    await activate(injected);
+    console.log(account);
+  };
+
   const { accountStore } = useStores();
   const { address } = accountStore;
+  console.log(address);
 
   return (
     <Root>
-      {address == null ? (
+      {active ? (
         <ConnectWalletButton
           onClick={() => accountStore.setLoginModalOpened(true)}
         />

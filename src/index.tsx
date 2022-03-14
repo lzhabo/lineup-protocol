@@ -7,15 +7,13 @@ import "normalize.css";
 import { RootStore, storesContext } from "@stores";
 import { loadState, saveState } from "@src/utils/localStorage";
 import { autorun } from "mobx";
-// import "react-perfect-scrollbar/dist/css/styles.css";
-// import "rc-notification/assets/index.css";
-// import "react-loading-skeleton/dist/skeleton.css";
-// import "rc-slider/assets/index.css";
-// import "rc-dialog/assets/index.css";
+import { Web3ReactProvider } from "@web3-react/core";
+import Web3 from "web3";
 
 const initState = loadState();
 
 const mobxStore = new RootStore(initState);
+
 autorun(
   () => {
     console.dir(mobxStore);
@@ -24,13 +22,21 @@ autorun(
   { delay: 1000 }
 );
 
+function getLibrary(provider: any) {
+  const e = new Web3(provider);
+  console.log(e);
+  return e;
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <storesContext.Provider value={mobxStore}>
-      <Router>
-        <App />
-      </Router>
-    </storesContext.Provider>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <storesContext.Provider value={mobxStore}>
+        <Router>
+          <App />
+        </Router>
+      </storesContext.Provider>
+    </Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

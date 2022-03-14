@@ -16,6 +16,7 @@ const Root = styled(Row)`
   align-items: center;
   height: fit-content;
   justify-content: space-between;
+  color: #ffffff;
   @media (min-width: 880px) {
     justify-content: flex-end;
   }
@@ -32,15 +33,14 @@ const AddressContainer = styled.div<{ expanded: boolean }>`
   align-items: center;
   justify-content: center;
   height: 40px;
-  padding: 0 16px;
   box-sizing: border-box;
-  border: 1px solid #f1f2fe;
-  border-radius: 10px;
+  border-radius: 20px;
+  padding: 8px 16px 8px 8px;
   cursor: pointer;
-  background: ${({ expanded }) => (expanded ? "#f1f2fe" : "#fff")};
+  background-color: #2a2a32;
 
   :hover {
-    background: #f1f2fe;
+    //background: #f1f2fe;
   }
 
   .avatar {
