@@ -1,17 +1,10 @@
-/** @jsx jsx */
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Column } from "@components/Flex";
 
-export const MAX_WIDTH = 480;
-
-export const layoutStyle = css`
-  max-width: ${MAX_WIDTH}px;
-  box-sizing: border-box;
-  padding: 0 16px;
-`;
-
-const Layout = styled.div`
-  ${layoutStyle}
+const Layout = styled(Column)`
+  width: 100%;
+  max-width: 1440px;
+  align-items: center;
 `;
 
 export default Layout;

@@ -24,14 +24,21 @@ const Item = styled.div<{ active: boolean; selectable?: boolean }>`
   width: 134px;
   box-sizing: border-box;
   cursor: ${({ active }) => (active ? " pointer" : "not-allowed")};
+
   img {
     margin-right: 8px;
   }
 `;
 
 const tabs = [
-  { title: "Trade", route: "trade", icon: tradeIcon, selectable: true },
-  { title: "Invest", route: "invests", icon: investIcon, selectable: false },
+  { title: "Overview", route: "overview", selectable: true },
+  { title: "Invest", route: "invests", selectable: false },
+  {
+    title: "Liquidity Pools",
+    route: "pools",
+    icon: investIcon,
+    selectable: false,
+  },
 ];
 const Tabs: React.FC<IProps> = () => {
   const [tab, setTab] = useState(0);
@@ -44,7 +51,6 @@ const Tabs: React.FC<IProps> = () => {
           onClick={() => selectable && setTab(index)}
           selectable={selectable}
         >
-          <img src={icon} alt={route} />
           {title}
         </Item>
       ))}

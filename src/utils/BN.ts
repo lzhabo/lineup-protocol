@@ -1,6 +1,6 @@
-import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber';
-import BigNumber from 'bignumber.js';
-import { Undefinable } from 'tsdef';
+import { BigNumber as EthersBigNumber } from "@ethersproject/bignumber";
+import BigNumber from "bignumber.js";
+import { Undefinable } from "tsdef";
 
 BigNumber.config({ EXPONENTIAL_AT: [-100, 100] });
 
@@ -10,7 +10,7 @@ const bigNumberify = (n: any): string | number => {
   if (n && n.toString) {
     const primitive = n.toString();
 
-    if (typeof primitive !== 'object') {
+    if (typeof primitive !== "object") {
       return primitive;
     }
   }
@@ -81,7 +81,7 @@ class BN extends BigNumber {
     roundingMode: BigNumber.RoundingMode = BigNumber.ROUND_DOWN
   ): BN {
     return this.gte(1)
-      ? this.toDecimalPlaces(6)
+      ? this.toDecimalPlaces(significantDigits)
       : new BN(super.precision(significantDigits, roundingMode));
   }
 
@@ -105,15 +105,15 @@ class BN extends BigNumber {
     return new BN(super.min(...n.map(bigNumberify)));
   }
 
-  static toBN(p: Promise<BigNumber>): Promise<BN> {
+  static toBN(p: Promise<EthersBigNumber | number | string>): Promise<BN> {
     return p.then((v) => new BN(v));
   }
 
-  static parseUnits(value: TValue, decimals = 18): BN {
+  static parseUnits(value: TValue, decimals = 8): BN {
     return new BN(10).pow(decimals).times(bigNumberify(value));
   }
 
-  static formatUnits(value: TValue, decimals = 18): BN {
+  static formatUnits(value: TValue, decimals = 8): BN {
     return new BN(value).div(new BN(10).pow(decimals));
   }
 
@@ -127,7 +127,7 @@ class BN extends BigNumber {
 
   static ZERO = new BN(0);
   static MaxUint256 =
-    '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff'; // TODO: What about solana?
+    "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
 }
 
 export type TEtherBigNumber = EthersBigNumber;

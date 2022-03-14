@@ -1,0 +1,8 @@
+{
+  "BNB": {
+    "assetId": "BNB",
+    "name": "BNB",
+    "symbol": "BNB",
+    "decimals": 18
+  }
+}

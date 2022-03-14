@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Header from "@components/Header";
-import SwapScreen from "@screens/SwapScreen";
+import { Route, Routes } from "react-router-dom";
+import NFT from "@screens/NFT";
+import { ROUTES } from "@src/constants";
+import Invest from "@screens/Invest";
 
 interface IProps {}
 
@@ -11,6 +14,7 @@ const Root = styled.div`
   width: 100%;
   min-height: 100vh;
   align-items: center;
+
   & > * {
     width: 100%;
   }
@@ -20,11 +24,10 @@ const App: React.FunctionComponent<IProps> = () => {
   return (
     <Root>
       <Header />
-      <SwapScreen />
-      {/*<Routes>*/}
-      {/*  /!*раньше нужно было exact писать, теперь если нужно много совпадений, то path="home/*"*!/*/}
-      {/*  <Route path={ROUTES.ROOT} element={<SwapScreen />} />*/}
-      {/*</Routes>*/}
+      <Routes>
+        <Route path={ROUTES.INVEST} element={<Invest />} />
+        <Route path={ROUTES.NFT} element={<NFT />} />
+      </Routes>
     </Root>
   );
 };

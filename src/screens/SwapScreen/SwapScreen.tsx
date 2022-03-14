@@ -67,7 +67,7 @@ const SwapScreen: React.FC<IProps> = () => {
           <div>~ $69,694.0</div>
         </Balance>
       </Wrapper>
-      <Button borderRadius="0 0 8px 8px ">Swap</Button>
+      <Button>Swap</Button>
     </Root>
   );
 };
