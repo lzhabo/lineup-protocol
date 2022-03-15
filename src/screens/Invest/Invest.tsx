@@ -3,9 +3,8 @@ import React from "react";
 import { Observer } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import { InvestVMProvider } from "@screens/Invest/InvestVm";
-import TotalValue from "./TotalValue";
-import SizedBox from "@components/SizedBox";
-import Deposits from "@screens/Invest/Deposits";
+import InvestCard from "@screens/Invest/InvestCard";
+import Divider from "@components/Divider";
 
 const Root = styled.div`
   display: flex;
@@ -24,16 +23,47 @@ const Root = styled.div`
     margin-top: 56px;
   }
 `;
+
+const Container = styled.div`
+  display: grid;
+  row-gap: 16px;
+  @media (min-width: 880px) {
+    grid-template: 150px / auto auto auto;
+    column-gap: 16px;
+  }
+`;
+
 const InvestImpl: React.FC = () => {
-  // const vm = useInvestVM();
+  const tariffs = [
+    {
+      periodDays: 100,
+      apy: 50,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
+    },
+    {
+      periodDays: 30,
+      apy: 50,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
+    },
+    {
+      periodDays: 7,
+      apy: 50,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
+    },
+  ];
   return (
     <Layout>
       <Observer>
         {() => (
           <Root>
-            <TotalValue />
-            <SizedBox height={54} />
-            <Deposits />
+            <Container>
+              {tariffs.map((t, index) => (
+                <InvestCard {...t} key={index + "invest"} />
+              ))}
+            </Container>
           </Root>
         )}
       </Observer>

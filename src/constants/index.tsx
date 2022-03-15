@@ -9,7 +9,8 @@ export const TOKENS = {
 export const ROUTES = {
   ROOT: "/",
   INVEST: "/invest",
-  NFT: "/nft",
+  INVEST_DAYS: "/invest/:days",
+  DASHBOARD: "/dashboard",
 };
 
 export type TChainId = "W" | "T";

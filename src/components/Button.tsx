@@ -15,33 +15,22 @@ const Button = styled.button<{
   align-items: center;
   box-sizing: border-box;
   background: ${({ kind }) => (kind === "secondary" ? "#1F1E25" : "#666DE3")};
-  border-radius: ${({ round }) => (round === "round" ? "20px" : "12px")};
+  border-radius: 20px;
   box-shadow: none;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 14px;
+  line-height: 20px;
   color: #ffffff;
   outline: none;
   border: none;
+
   width: ${({ fixed }) => (fixed ? "100%" : "fit-content")};
 
-  ${({ size }) =>
-    (() => {
-      switch (size) {
-        case "medium":
-          return "padding: 0 20px; height: 40px;";
-        case "large":
-          return "padding: 0 24px; height: 56px;";
-        default:
-          return "padding: 0 24px; height: 56px;";
-      }
-    })()}
+  padding: 0 24px;
+  height: 40px;
+
   :hover {
     cursor: pointer;
-    // background: ${({ kind }) =>
-      kind === "secondary" ? "#F1F2FE" : "#6563dd"};
-    // border: 1px solid
-    //   ${({ kind }) => (kind === "secondary" ? "#F1F2FE" : "#6563dd")};
   }
 
   :disabled {

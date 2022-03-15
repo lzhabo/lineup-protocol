@@ -18,7 +18,7 @@ const Top = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background: url(${waves}) bottom right;
+  background: url(${waves}) bottom right #565cbf;
   background-size: cover;
   padding: 24px 32px;
   border-radius: 16px 16px 0 0;

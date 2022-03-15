@@ -21,13 +21,13 @@ const Text = styled.div<{
     (() => {
       switch (size) {
         case "medium":
-          return "font-size: 14px; line-height: 20px;";
-        case "big":
-          return "font-size: 26px; line-height: 34px;";
-        case "large":
-          return "font-size: 32px;line-height: 40px;";
-        default:
           return "font-size: 16px; line-height: 24px;";
+        case "big":
+          return "font-size: 20px; line-height: 28px;";
+        case "large":
+          return "font-size: 40px;line-height: 56px;";
+        default:
+          return "font-size: 14px; line-height: 20px;";
       }
     })()}
   ${({ type }) =>
