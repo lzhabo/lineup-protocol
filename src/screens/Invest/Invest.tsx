@@ -4,7 +4,6 @@ import { Observer } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import { InvestVMProvider } from "@screens/Invest/InvestVm";
 import InvestCard from "@screens/Invest/InvestCard";
-import Divider from "@components/Divider";
 
 const Root = styled.div`
   display: flex;

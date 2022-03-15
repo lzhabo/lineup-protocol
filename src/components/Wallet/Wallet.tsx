@@ -4,10 +4,10 @@ import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import LoginModal from "./LoginModal";
 import LoggedInAccountInfo from "@components/Wallet/LoggedInAccountInfo";
-import ConnectWalletButton from "@components/Header/ConnectWalletButton";
 import { useWeb3React } from "@web3-react/core";
 
 import { InjectedConnector } from "@web3-react/injected-connector";
+import Button from "@components/Button";
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42],
@@ -34,12 +34,10 @@ const Wallet: React.FC<IProps> = () => {
 
   return (
     <Root>
-      {active ? (
-        <ConnectWalletButton
-          onClick={() => accountStore.setLoginModalOpened(true)}
-        />
-      ) : (
+      {active != null ? (
         <LoggedInAccountInfo />
+      ) : (
+        <Button onClick={handleConnect}>Connect wallet</Button>
       )}
       <LoginModal
         visible={accountStore.loginModalOpened}

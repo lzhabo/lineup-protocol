@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 import { ReactComponent as Logo } from "@src/assets/images/bigLogo.svg";
 import { observer } from "mobx-react-lite";
 import Wallet from "@components/Wallet/Wallet";
-import { ROUTES } from "@src/constants";
-import { useNavigate } from "react-router-dom";
 
 interface IProps {}
 
