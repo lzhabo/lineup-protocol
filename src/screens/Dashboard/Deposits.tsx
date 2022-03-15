@@ -20,8 +20,8 @@ const Deposits: React.FC<IProps> = () => {
         My Deposits
       </Text>
       <SizedBox height={24} />
-      {Array.from({ length: 2 }).map(() => (
-        <DepositCard />
+      {Array.from({ length: 2 }).map((_, i) => (
+        <DepositCard key={i} />
       ))}
       <Button fixed kind="secondary">
         <Plus />

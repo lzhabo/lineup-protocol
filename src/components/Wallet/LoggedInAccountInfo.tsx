@@ -10,7 +10,9 @@ import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import Tooltip from "../Tooltip";
 
-interface IProps {}
+interface IProps {
+  address: string;
+}
 
 const Root = styled(Row)`
   align-items: center;
@@ -58,9 +60,7 @@ const AddressContainer = styled.div<{ expanded: boolean }>`
   }
 `;
 
-const LoggedInAccountInfo: React.FC<IProps> = () => {
-  const { accountStore } = useStores();
-  const { address } = accountStore;
+const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
   const avatar = address && identityImg.create(address, { size: 24 * 3 });
   const [accountOpened, setAccountOpened] = useState<boolean>(false);
   return (
