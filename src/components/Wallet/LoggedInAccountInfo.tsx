@@ -8,6 +8,7 @@ import arrowIcon from "@src/assets/icons/arrowDown.svg";
 import * as identityImg from "identity-img";
 import { observer } from "mobx-react-lite";
 import Tooltip from "../Tooltip";
+import { useStores } from "@stores";
 
 interface IProps {
   address: string;
@@ -60,6 +61,7 @@ const AddressContainer = styled.div<{ expanded: boolean }>`
 `;
 
 const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
+  const { accountStore } = useStores();
   const avatar = address && identityImg.create(address, { size: 24 * 3 });
   const [accountOpened, setAccountOpened] = useState<boolean>(false);
   return (
@@ -71,9 +73,7 @@ const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
           trigger: "click",
           onVisibleChange: setAccountOpened,
         }}
-        content={
-          <Text onClick={() => console.log("Disconnect")}>Disconnect</Text>
-        }
+        content={<Text onClick={() => accountStore.logout()}>Disconnect</Text>}
       >
         <AddressContainer expanded={accountOpened}>
           <img className="avatar" src={avatar!} alt="avatar" />

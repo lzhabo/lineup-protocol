@@ -5,6 +5,7 @@ import SizedBox from "@components/SizedBox";
 import { useStores } from "@stores";
 import LoggOutInvestments from "@screens/Dashboard/Investments/LoggOutInvestments";
 import LoggInInvestments from "@screens/Dashboard/Investments/LoggInInvestments";
+import { observer } from "mobx-react-lite";
 
 interface IProps {}
 
@@ -29,4 +30,4 @@ const Investments: React.FC<IProps> = () => {
     </Root>
   );
 };
-export default Investments;
+export default observer(Investments);
