@@ -4,8 +4,8 @@ import { Observer } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import TotalValue from "./TotalValue";
 import SizedBox from "@components/SizedBox";
-import Deposits from "@screens/Dashboard/Deposits";
 import { DashboardVMProvider } from "@screens/Dashboard/DashboardVm";
+import Investments from "./Investments";
 
 const Root = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const DashboardImpl: React.FC = () => {
           <Root>
             <TotalValue />
             <SizedBox height={54} />
-            <Deposits />
+            <Investments />
           </Root>
         )}
       </Observer>

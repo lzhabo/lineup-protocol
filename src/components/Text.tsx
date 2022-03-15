@@ -11,11 +11,13 @@ const Text = styled.div<{
   fitContent?: boolean;
   nowrap?: boolean;
   textAlign?: TTextAlign;
+  onClick?: () => void;
 }>`
   width: ${({ fitContent }) => (fitContent ? "fit-content" : "100%")};
   font-weight: ${({ weight }) => weight ?? 500};
   white-space: ${({ nowrap }) => (nowrap ? "nowrap" : "unset")};
   text-align: ${({ textAlign }) => textAlign ?? "default"};
+  ${({ onClick }) => onClick != null && "cursor: pointer;"};
 
   ${({ size }) =>
     (() => {

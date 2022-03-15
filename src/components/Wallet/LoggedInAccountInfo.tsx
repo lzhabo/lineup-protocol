@@ -71,7 +71,9 @@ const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
           trigger: "click",
           onVisibleChange: setAccountOpened,
         }}
-        content={<div>hello</div>}
+        content={
+          <Text onClick={() => console.log("Disconnect")}>Disconnect</Text>
+        }
       >
         <AddressContainer expanded={accountOpened}>
           <img className="avatar" src={avatar!} alt="avatar" />

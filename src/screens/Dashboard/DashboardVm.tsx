@@ -2,6 +2,8 @@ import React, { useMemo } from "react";
 import { makeAutoObservable } from "mobx";
 import { RootStore, useStores } from "@stores";
 import { useVM } from "@src/utils/useVm";
+import BN from "@src/utils/BN";
+import { sleep } from "@src/utils/sleep";
 
 const ctx = React.createContext<DashboardVm | null>(null);
 
@@ -19,8 +21,22 @@ class DashboardVm {
   loading: boolean = false;
   private _setLoading = (l: boolean) => (this.loading = l);
 
+  totalProfit: BN | null = null;
+  totalLocked: BN | null = null;
+
+  get totalValue() {
+    return BN.ZERO;
+  }
+
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
+    this.sync();
   }
+
+  sync = async () => {
+    await sleep(2000);
+    this.totalProfit = BN.ZERO;
+    this.totalLocked = BN.ZERO;
+  };
 }
