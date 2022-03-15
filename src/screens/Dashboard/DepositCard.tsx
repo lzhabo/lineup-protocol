@@ -20,7 +20,7 @@ const DepositCard: React.FC<IProps> = () => {
       <SizedBox height={24} />
       <Row justifyContent="space-between">
         {data.map(({ name, value }) => (
-          <Column crossAxisSize="max">
+          <Column crossAxisSize="max" key={value}>
             <Text type="secondary" size="medium">
               {name}
             </Text>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import LoginModal from "./LoginModal";
@@ -8,6 +8,8 @@ import { useWeb3React } from "@web3-react/core";
 
 import { InjectedConnector } from "@web3-react/injected-connector";
 import Button from "@components/Button";
+import Web3 from "web3";
+import accountStore from "@stores/AccountStore";
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42],
@@ -22,27 +24,20 @@ const Root = styled.div`
 `;
 
 const Wallet: React.FC<IProps> = () => {
-  const { active, account, activate } = useWeb3React();
-  const handleConnect = async () => {
-    await activate(injected);
-    console.log(account);
-  };
-
   const { accountStore } = useStores();
-  const { address } = accountStore;
-  console.log(address);
-
+  const [loginModalOpened, setLoginModalOpened] = useState(false);
   return (
     <Root>
-      {active != null ? (
-        <LoggedInAccountInfo />
+      {accountStore.address != null ? (
+        <LoggedInAccountInfo address={accountStore.address} />
       ) : (
-        <Button onClick={handleConnect}>Connect wallet</Button>
+        <Button onClick={() => setLoginModalOpened(true)}>
+          Connect wallet
+        </Button>
       )}
       <LoginModal
-        visible={accountStore.loginModalOpened}
-        onLogin={(loginType) => accountStore.login(loginType)}
-        onClose={() => accountStore.setLoginModalOpened(false)}
+        visible={loginModalOpened}
+        onClose={() => setLoginModalOpened(false)}
       />
     </Root>
   );
