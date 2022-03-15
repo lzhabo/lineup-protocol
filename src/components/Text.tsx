@@ -41,6 +41,8 @@ const Text = styled.div<{
           return "color: #ffffff";
         case "purple":
           return "color: #767EFF;";
+        case "error":
+          return "color: #E34744;";
         default:
           return "color: #ffffff";
       }

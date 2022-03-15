@@ -5,29 +5,23 @@ import BN from "@src/utils/BN";
 import BigNumberInput from "@components/BigNumberInput";
 import _ from "lodash";
 import AmountInput from "./TokenInput/AmountInput";
+import Card from "@components/Card";
+import SizedBox from "@components/SizedBox";
+import Divider from "@components/Divider";
+import { Row } from "@components/Flex";
+import Text from "@components/Text";
 
 interface IProps {
   decimals: number;
-
   amount: BN;
   setAmount?: (amount: BN) => void;
+  balance: BN;
+  symbol: string;
 }
 
-const Root = styled.div`
+const Root = styled(Card)`
   display: flex;
   flex-direction: column;
-
-  & > :first-of-type {
-    margin-bottom: 8px;
-  }
-
-  @media (min-width: 560px) {
-    flex-direction: row;
-    & > :first-of-type {
-      margin-bottom: 0;
-      margin-right: 8px;
-    }
-  }
 `;
 
 const InputContainer = styled.div<{
@@ -70,7 +64,8 @@ const TokenInput: React.FC<IProps> = (props) => {
     }, 500),
     []
   );
-
+  const error = amount.gt(props.balance);
+  const balance = BN.formatUnits(props.balance, props.decimals);
   return (
     <Root>
       <InputContainer focused={focused} readOnly={!props.setAmount}>
@@ -93,9 +88,41 @@ const TokenInput: React.FC<IProps> = (props) => {
           decimals={props.decimals}
           value={amount}
           onChange={handleChangeAmount}
-          placeholder="0.00"
+          placeholder={"0.00 " + props.symbol}
         />
       </InputContainer>
+      <SizedBox height={8} />
+      <Divider
+        style={
+          error
+            ? { background: "#E34744", height: 1 }
+            : { background: "#3B3B46", height: 1 }
+        }
+      />
+      <SizedBox height={8} />
+      <Row justifyContent="space-between">
+        <Text type={error ? "error" : "secondary"} fitContent>
+          Balance: {balance.toFormat(2)}
+        </Text>
+        <Row mainAxisSize="fit-content">
+          {[25, 50, 75, 100].map((v, i, arr) => (
+            <Text
+              fitContent
+              type="purple"
+              key={v}
+              style={{
+                marginRight: arr.length - 1 === i ? 0 : 8,
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                handleChangeAmount(props.balance.times(v).times(0.01));
+              }}
+            >
+              {v}%
+            </Text>
+          ))}
+        </Row>
+      </Row>
     </Root>
   );
 };

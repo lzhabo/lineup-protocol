@@ -35,10 +35,9 @@ const Button = styled.button<{
 
   :disabled {
     opacity: ${({ kind }) => (kind === "secondary" ? 0.4 : 1)};
-    background: ${({ kind }) => (kind === "secondary" ? "#fff" : "#c6c9f4")};
-    border: 1px solid
-      ${({ kind }) => (kind === "secondary" ? "#F1F2FE" : "#c6c9f4")};
+    background: #666de3;
     cursor: not-allowed;
+    opacity: 0.4;
   }
 `;
 
