@@ -9,10 +9,12 @@ import { ROUTES } from "@src/constants";
 import SizedBox from "@components/SizedBox";
 import AmountToLock from "./AmountToLock";
 import { matchPath } from "react-router-dom";
+import { Column } from "@components/Flex";
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   box-sizing: border-box;
   padding: 0 16px;
@@ -23,8 +25,7 @@ const Root = styled.div`
   margin-top: 56px;
   text-align: left;
 
-  @media (min-width: 880px) {
-    margin-top: 56px;
+  @media (min-width: 768px) {
   }
 `;
 
@@ -39,11 +40,16 @@ const InvestDaysImpl: React.FC = () => {
             <Root>
               <GoBack link={ROUTES.INVEST} text="Back to Invest" />
               <SizedBox height={32} />
-              <Text textAlign="center" size="title">
-                Invest to 100-day locking period
-              </Text>
-              <SizedBox height={16} />
-              <AmountToLock />
+              <Column
+                alignItems="center"
+                style={{ maxWidth: "calc(480px + 32px)", padding: "0 16px" }}
+              >
+                <Text textAlign="center" size="title">
+                  Invest to 100-day locking period
+                </Text>
+                <SizedBox height={32} />
+                <AmountToLock />
+              </Column>
             </Root>
           );
         }}

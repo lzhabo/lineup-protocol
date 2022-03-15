@@ -21,9 +21,7 @@ const Root = styled.div`
   min-width: 100%;
   min-height: 100%;
   margin-bottom: 24px;
-  margin-top: 40px;
   @media (min-width: 880px) {
-    margin-top: 56px;
     max-width: 480px;
   }
 `;
@@ -35,15 +33,24 @@ const AmountToLock: React.FC<IProps> = () => {
       <Card>
         <TokenInput amount={v} setAmount={setV} decimals={18} />
         <SizedBox height={8} />
-        <Divider />
+        <Divider style={{ background: "#3B3B46", height: 1 }} />
         <SizedBox height={8} />
         <Row justifyContent="space-between">
           <Text type="secondary" fitContent>
             Balance: 1,230.49502
           </Text>
-          <Text fitContent type="purple">
-            25% 50% 75% 100%
-          </Text>
+          <Row mainAxisSize="fit-content">
+            {["25%", "50%", "75%", "100%"].map((v, i, arr) => (
+              <Text
+                fitContent
+                type="purple"
+                key={v}
+                style={{ marginRight: arr.length - 1 === i ? 0 : 8 }}
+              >
+                {v}
+              </Text>
+            ))}
+          </Row>
         </Row>
       </Card>
       <SizedBox height={26} />

@@ -27,7 +27,7 @@ const Text = styled.div<{
         case "large":
           return "font-size: 40px;line-height: 56px;";
         case "title":
-          return "font-size: 34px;line-height: 26px;";
+          return "font-size: 26px;line-height: 34px;";
         default:
           return "font-size: 14px; line-height: 20px;";
       }

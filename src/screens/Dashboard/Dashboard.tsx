@@ -20,7 +20,7 @@ const Root = styled.div`
   margin-top: 56px;
   text-align: left;
 
-  @media (min-width: 880px) {
+  @media (min-width: 768px) {
     margin-top: 56px;
   }
 `;

@@ -1,15 +1,12 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import LoginModal from "./LoginModal";
 import LoggedInAccountInfo from "@components/Wallet/LoggedInAccountInfo";
-import { useWeb3React } from "@web3-react/core";
 
 import { InjectedConnector } from "@web3-react/injected-connector";
 import Button from "@components/Button";
-import Web3 from "web3";
-import accountStore from "@stores/AccountStore";
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42],

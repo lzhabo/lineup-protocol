@@ -32,7 +32,7 @@ const Card = styled.div<{
   box-sizing: border-box;
   padding: ${({ paddingMobile }) => paddingMobile ?? "16px"};
   background: #1f1e25;
-  @media (min-width: 560px) {
+  @media (min-width: 768px) {
     padding: ${({ paddingDesktop }) => paddingDesktop ?? "24px"};
   }
 `;

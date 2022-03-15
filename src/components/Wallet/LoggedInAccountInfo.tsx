@@ -6,7 +6,6 @@ import Text from "@components/Text";
 import centerEllipsis from "@src/utils/centerEllipsis";
 import arrowIcon from "@src/assets/icons/arrowDown.svg";
 import * as identityImg from "identity-img";
-import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import Tooltip from "../Tooltip";
 
@@ -19,7 +18,7 @@ const Root = styled(Row)`
   height: fit-content;
   justify-content: space-between;
   color: #ffffff;
-  @media (min-width: 880px) {
+  @media (min-width: 768px) {
     justify-content: flex-end;
   }
 
@@ -56,7 +55,7 @@ const AddressContainer = styled.div<{ expanded: boolean }>`
   .menu-arrow {
     transition: 0.4s;
     transform: ${({ expanded }) =>
-      expanded ? "rotate(-90deg)" : "rotate(90deg)"};
+      expanded ? "rotate(-90deg)" : "rotate(0deg)"};
   }
 `;
 

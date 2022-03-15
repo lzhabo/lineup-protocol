@@ -2,14 +2,14 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const Root = styled.input`
+  font-weight: 600;
   font-size: 20px;
-  line-height: 24px;
+  line-height: 28px;
   border: none;
   background: transparent;
   outline: none;
   width: 100%;
-  color: #363870;
-
+  color: #ffffff;
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -21,7 +21,7 @@ const Root = styled.input`
   }
 
   ::placeholder {
-    color: #8082c5;
+    color: #747489;
   }
 `;
 

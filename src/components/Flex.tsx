@@ -46,13 +46,13 @@ export const Column = styled.div<IFlexProps>`
 export const adaptiveStyleTemplate = `
   & .desktop {
     display: none;
-    @media (min-width: 880px) {
+    @media (min-width: 768px) {
       display: flex;
     }
   }
   & .mobile {
     display: flex;
-    @media (min-width: 880px) {
+    @media (min-width: 768px) {
       display: none;
     }
   }

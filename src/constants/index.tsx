@@ -1,11 +1,3 @@
-import { mainnetTokens } from "@src/constants/mainnetConfig";
-import { testnetTokens } from "@src/constants/testnetConfig";
-
-export const TOKENS = {
-  W: mainnetTokens,
-  T: testnetTokens,
-};
-
 export const ROUTES = {
   ROOT: "/",
   INVEST: "/invest",

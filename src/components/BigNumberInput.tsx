@@ -42,9 +42,9 @@ const BigNumberInput: React.FC<IBigNumberInputProps> = ({
     const caret = inputRef.current.selectionStart;
     _setInputValue(value);
 
-    window.requestAnimationFrame(() => {
-      inputRef.current && inputRef.current.setSelectionRange(caret, caret);
-    });
+    // window.requestAnimationFrame(() => {
+    //   inputRef.current && inputRef.current.setSelectionRange(caret, caret);
+    // });
   };
 
   // update current value

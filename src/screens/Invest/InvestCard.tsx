@@ -16,6 +16,8 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+
+  justify-self: center;
 `;
 
 const Top = styled.div`
@@ -47,7 +49,7 @@ const InvestCard: React.FC<IProps> = ({
     <Root>
       <Top>
         <Column>
-          <Text>{periodDays} locking period</Text>
+          <Text>{periodDays.toFixed(0)} min locking period</Text>
           <Text size="big">{apy}% APY</Text>
         </Column>
         <Img src={pic} />

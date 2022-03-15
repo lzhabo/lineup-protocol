@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import AccountStore, { ISerializedAccountStore } from "@stores/AccountStore";
-import NotificationStore from "@stores/NotificationStore";
+import InvestStore from "@stores/InvestStore";
 
 export interface ISerializedRootStore {
   accountStore?: ISerializedAccountStore;
@@ -16,11 +16,11 @@ export type TPoolStats = {
 
 export default class RootStore {
   public accountStore: AccountStore;
-  public notificationStore: NotificationStore;
+  public investStore: InvestStore;
 
   constructor(initState?: ISerializedRootStore) {
-    this.notificationStore = new NotificationStore(this);
     this.accountStore = new AccountStore(this, initState?.accountStore);
+    this.investStore = new InvestStore(this);
     makeAutoObservable(this);
   }
 

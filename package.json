@@ -73,7 +73,6 @@
     "postcss-safe-parser": "5.0.2",
     "prettier": "^2.5.0",
     "rc-dialog": "^8.6.0",
-    "rc-notification": "^4.5.7",
     "rc-slider": "^9.7.5",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
@@ -194,7 +193,6 @@
     "@types/react": "^17.0.0",
     "@types/react-alert": "^5.2.1",
     "@types/react-dom": "^17.0.0",
-    "@types/react-notifications-component": "^3.1.1",
     "sass": "^1.43.4"
   }
 }

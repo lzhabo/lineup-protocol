@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Observer } from "mobx-react-lite";
+import { Observer, useObserver } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import { InvestVMProvider } from "@screens/Invest/InvestVm";
 import InvestCard from "@screens/Invest/InvestCard";
@@ -12,6 +12,7 @@ import rocket1 from "@src/assets/images/rocket1.svg";
 import rocket2 from "@src/assets/images/rocket2.svg";
 import rocket3 from "@src/assets/images/rocket3.svg";
 import { useNavigate } from "react-router-dom";
+import { useStores } from "@stores";
 
 const Root = styled.div`
   display: flex;
@@ -26,40 +27,60 @@ const Root = styled.div`
   margin-top: 56px;
   text-align: left;
 
-  @media (min-width: 880px) {
+  @media (min-width: 768px) {
     margin-top: 56px;
   }
 `;
 
 const Container = styled.div`
-  display: grid;
-  row-gap: 16px;
-  @media (min-width: 880px) {
-    grid-template: 150px / auto auto auto;
-    column-gap: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  & > * {
+    max-width: 330px;
+    margin: 0 0 16px 0;
+  }
+  :last-child {
+    margin: 0;
+  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    & > * {
+      max-width: 100%;
+      margin: 0 16px 0 0;
+    }
+    :last-child {
+      margin: 0;
+    }
   }
 `;
 
 const InvestImpl: React.FC = () => {
-  const tariffs = [
+  const { investStore } = useStores();
+  const locks = useObserver(() => investStore.locks);
+  const tariffs = locks && [
     {
+      id: locks[0].id,
       pic: rocket1,
-      periodDays: 100,
-      apy: 50,
+      periodDays: locks[0].lockPeriod / 60,
+      apy: locks[0].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
     {
+      id: locks[1].id,
       pic: rocket2,
-      periodDays: 30,
-      apy: 50,
+      periodDays: locks[1].lockPeriod / 60,
+      apy: locks[1].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
     {
+      id: locks[2].id,
       pic: rocket3,
-      periodDays: 7,
-      apy: 50,
+      periodDays: locks[2].lockPeriod / 60,
+      apy: locks[2].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
@@ -75,11 +96,11 @@ const InvestImpl: React.FC = () => {
             <Text size="title">Invest</Text>
             <SizedBox height={16} />
             <Container>
-              {tariffs.map((t, index) => (
+              {tariffs?.map((t, index) => (
                 <InvestCard
                   {...t}
                   key={index + "invest"}
-                  onClick={() => navigate(`/invest/${t.periodDays}d`)}
+                  onClick={() => navigate(`/invest/${t.id}`)}
                 />
               ))}
             </Container>
