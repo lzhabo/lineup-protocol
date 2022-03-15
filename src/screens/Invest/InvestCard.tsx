@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
 import { Column } from "@components/Flex";
-import rocket from "@src/assets/images/rocket1.svg";
 import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import Button from "@components/Button";
@@ -10,6 +9,8 @@ interface IProps {
   periodDays: number;
   apy: number;
   description: string;
+  pic: string;
+  onClick: () => void;
 }
 
 const Root = styled.div`
@@ -35,7 +36,13 @@ const Img = styled.img`
   height: 56px;
   width: 56px;
 `;
-const InvestCard: React.FC<IProps> = ({ periodDays, description, apy }) => {
+const InvestCard: React.FC<IProps> = ({
+  periodDays,
+  description,
+  apy,
+  pic,
+  onClick,
+}) => {
   return (
     <Root>
       <Top>
@@ -43,13 +50,15 @@ const InvestCard: React.FC<IProps> = ({ periodDays, description, apy }) => {
           <Text>{periodDays} locking period</Text>
           <Text size="big">{apy}% APY</Text>
         </Column>
-        <Img src={rocket} />
+        <Img src={pic} />
       </Top>
       <SizedBox height={2} />
       <Bottom>
         <Text type="secondary">{description}</Text>
         <SizedBox height={24} />
-        <Button fixed>Invest</Button>
+        <Button onClick={onClick} fixed>
+          Invest
+        </Button>
       </Bottom>
     </Root>
   );

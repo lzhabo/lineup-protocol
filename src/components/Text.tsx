@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 type TTextType = "primary" | "secondary" | "light" | "purple" | "error";
-type TTextSize = "small" | "medium" | "large" | "big";
+type TTextSize = "small" | "medium" | "large" | "big" | "title";
 type TTextAlign = "center" | "left" | "right" | "justify";
 
 const Text = styled.div<{
@@ -26,6 +26,8 @@ const Text = styled.div<{
           return "font-size: 20px; line-height: 28px;";
         case "large":
           return "font-size: 40px;line-height: 56px;";
+        case "title":
+          return "font-size: 34px;line-height: 26px;";
         default:
           return "font-size: 14px; line-height: 20px;";
       }

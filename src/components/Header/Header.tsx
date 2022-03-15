@@ -11,6 +11,7 @@ const Root = styled.div`
   box-sizing: border-box;
   padding: 20px;
   align-items: center;
+  max-width: calc(1160px + 32px);
   justify-content: space-between;
   color: white;
 `;

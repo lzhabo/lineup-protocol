@@ -13,20 +13,15 @@ const Root = styled.div`
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  width: 100%;
   min-height: 100%;
+  width: calc(100% - 32px);
   max-width: calc(1160px + 32px);
-  margin-bottom: 24px;
-  margin-top: 56px;
+  margin: 0 16px;
   text-align: left;
 
-  @media (min-width: 880px) {
-    margin-top: 56px;
-  }
   border-top: 2px #2a2a32 solid;
   padding: 16px;
 `;
-
 const Footer: React.FC<IProps> = () => {
   return (
     <Root>
@@ -34,9 +29,16 @@ const Footer: React.FC<IProps> = () => {
         LineUp Protocol, 2022
       </Text>
       <Row mainAxisSize="fit-content">
-        <Twitter />
+        {/*<Desktop type="secondary">Join us on social media</Desktop>*/}
+        <Twitter
+          style={{ minWidth: 21, cursor: "pointer" }}
+          onClick={() => window.open("https://t.me/nftescape", "_blank")}
+        />
         <SizedBox width={20} />
-        <Telegram />
+        <Telegram
+          style={{ minWidth: 21, cursor: "pointer" }}
+          onClick={() => window.open("https://t.me/nftescape", "_blank")}
+        />
       </Row>
     </Root>
   );
