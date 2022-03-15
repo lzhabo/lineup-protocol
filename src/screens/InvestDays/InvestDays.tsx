@@ -7,8 +7,8 @@ import Text from "@components/Text";
 import GoBack from "@components/GoBack";
 import { ROUTES } from "@src/constants";
 import SizedBox from "@components/SizedBox";
-import AmountInput from "@screens/InvestDays/AmountInput";
-import { Column } from "@components/Flex";
+import AmountToLock from "./AmountToLock";
+import { matchPath } from "react-router-dom";
 
 const Root = styled.div`
   display: flex;
@@ -32,19 +32,21 @@ const InvestDaysImpl: React.FC = () => {
   return (
     <Layout>
       <Observer>
-        {() => (
-          <Root>
-            <GoBack link={ROUTES.INVEST} text="Back to Invest" />
-            <SizedBox height={32} />
-            <Text textAlign="center" size="title">
-              Invest to 100-day locking period
-            </Text>
-            <SizedBox height={16} />
-            <Column crossAxisSize="max" justifyContent="center">
-              <AmountInput />
-            </Column>
-          </Root>
-        )}
+        {() => {
+          const match = matchPath(ROUTES.INVEST_DAYS, window.location.pathname);
+          console.log(match);
+          return (
+            <Root>
+              <GoBack link={ROUTES.INVEST} text="Back to Invest" />
+              <SizedBox height={32} />
+              <Text textAlign="center" size="title">
+                Invest to 100-day locking period
+              </Text>
+              <SizedBox height={16} />
+              <AmountToLock />
+            </Root>
+          );
+        }}
       </Observer>
     </Layout>
   );

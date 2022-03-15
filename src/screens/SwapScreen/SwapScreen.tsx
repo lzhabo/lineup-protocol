@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import React from "react";
-import TokenInput from "@components/TokenInput";
 import SwapFromTo from "@components/SwapFromTo";
 import Button from "@components/Button";
 
@@ -43,7 +42,7 @@ const SwapScreen: React.FC<IProps> = () => {
   return (
     <Root>
       <Wrapper>
-        <TokenInput />
+        {/*<TokenInput />*/}
         <Balance>
           <div className="balance-selector">
             <div>Balance: 1,230.49502</div>
@@ -61,7 +60,7 @@ const SwapScreen: React.FC<IProps> = () => {
           toSymbol="ETH"
           fromSymbol="BTC"
         />
-        <TokenInput divided />
+        {/*<TokenInput divided />*/}
         <Balance>
           <div>Balance: 0.24051</div>
           <div>~ $69,694.0</div>

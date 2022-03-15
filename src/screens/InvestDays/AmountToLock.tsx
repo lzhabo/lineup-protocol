@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useState } from "react";
 import Card from "@components/Card";
 import Divider from "@components/Divider";
 import SizedBox from "@components/SizedBox";
@@ -7,6 +7,8 @@ import { Row } from "@components/Flex";
 import Text from "@components/Text";
 import Button from "@components/Button";
 import LockInfo from "@screens/InvestDays/LockInfo";
+import TokenInput from "@components/TokenInput";
+import BN from "@src/utils/BN";
 
 interface IProps {}
 
@@ -16,7 +18,6 @@ const Root = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0 16px;
   min-width: 100%;
   min-height: 100%;
   margin-bottom: 24px;
@@ -27,22 +28,22 @@ const Root = styled.div`
   }
 `;
 
-const AmountInput: React.FC<IProps> = () => {
+const AmountToLock: React.FC<IProps> = () => {
+  const [v, setV] = useState<BN>(BN.ZERO);
   return (
     <Root>
-      <Card maxWidth={480}>
-        <SizedBox height={30} />
+      <Card>
+        <TokenInput amount={v} setAmount={setV} decimals={18} />
+        <SizedBox height={8} />
         <Divider />
         <SizedBox height={8} />
         <Row justifyContent="space-between">
           <Text type="secondary" fitContent>
             Balance: 1,230.49502
           </Text>
-          <Row>
-            <Text fitContent type="purple">
-              25% 50% 75% 100%
-            </Text>
-          </Row>
+          <Text fitContent type="purple">
+            25% 50% 75% 100%
+          </Text>
         </Row>
       </Card>
       <SizedBox height={26} />
@@ -54,4 +55,4 @@ const AmountInput: React.FC<IProps> = () => {
     </Root>
   );
 };
-export default AmountInput;
+export default AmountToLock;
