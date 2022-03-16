@@ -6,6 +6,7 @@ import TotalValue from "./TotalValue";
 import SizedBox from "@components/SizedBox";
 import Deposits from "@screens/Dashboard/Deposits";
 import { DashboardVMProvider } from "@screens/Dashboard/DashboardVm";
+import AnimatedPage from "@components/AnimatedPage";
 
 const Root = styled.div`
   display: flex;
@@ -17,12 +18,12 @@ const Root = styled.div`
   min-height: 100%;
   max-width: calc(1160px + 32px);
   margin-bottom: 24px;
-  margin-top: 56px;
+  //margin-top: 56px;
   text-align: left;
 
-  @media (min-width: 768px) {
-    margin-top: 56px;
-  }
+  //@media (min-width: 768px) {
+  //  margin-top: 56px;
+  //}
 `;
 const DashboardImpl: React.FC = () => {
   return (
@@ -42,7 +43,9 @@ const DashboardImpl: React.FC = () => {
 
 const Dashboard: React.FC = () => (
   <DashboardVMProvider>
-    <DashboardImpl />
+    <AnimatedPage>
+      <DashboardImpl />
+    </AnimatedPage>
   </DashboardVMProvider>
 );
 export default Dashboard;

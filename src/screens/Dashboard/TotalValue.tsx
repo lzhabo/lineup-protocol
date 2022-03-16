@@ -36,21 +36,22 @@ const TotalValue: React.FC<IProps> = () => {
   return (
     <Root>
       <Top>
-        <Text size="large">Total Value</Text>
+        <Text size="medium">Total Value</Text>
         <SizedBox height={8} />
         <Text size="large" weight={600}>
-          $99,999.99
+          $0.00
         </Text>
       </Top>
       <SizedBox height={2} />
       <Bottom>
         <Column crossAxisSize="max">
           <Text type="secondary">Total value locked</Text>
-          <Text weight={500}>$99,999.99</Text>
+          <Text weight={500}>$0.00</Text>
         </Column>
         <Column crossAxisSize="max">
           <Text type="secondary">Total profit</Text>
-          <Text>$99,999.99 (+14.88%)</Text>
+          <Text>$0.00</Text>
+          {/*<Text>$99,999.99 (+14.88%)</Text>*/}
         </Column>
       </Bottom>
     </Root>

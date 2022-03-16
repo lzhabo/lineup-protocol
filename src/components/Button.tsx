@@ -15,21 +15,22 @@ const Button = styled.button<{
   align-items: center;
   box-sizing: border-box;
   background: ${({ kind }) => (kind === "secondary" ? "#1F1E25" : "#666DE3")};
-  border-radius: 20px;
+  border-radius: 26px;
   box-shadow: none;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 16px;
+  line-height: 24px;
   color: #ffffff;
   outline: none;
   border: none;
-
+  transition: 0.4s;
   width: ${({ fixed }) => (fixed ? "100%" : "fit-content")};
 
   padding: 0 24px;
-  height: 40px;
+  height: 52px;
 
   :hover {
+    background: ${({ kind }) => (kind === "secondary" ? "#535362" : "#767EFF")};
     cursor: pointer;
   }
 
@@ -39,6 +40,9 @@ const Button = styled.button<{
     border: 1px solid
       ${({ kind }) => (kind === "secondary" ? "#F1F2FE" : "#c6c9f4")};
     cursor: not-allowed;
+  }
+  @media (min-width: 768px) {
+    border-radius: 16px;
   }
 `;
 

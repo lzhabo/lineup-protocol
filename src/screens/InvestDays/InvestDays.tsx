@@ -10,6 +10,7 @@ import SizedBox from "@components/SizedBox";
 import AmountToLock from "./AmountToLock";
 import { matchPath } from "react-router-dom";
 import { Column } from "@components/Flex";
+import AnimatedPage from "@components/AnimatedPage";
 
 const Root = styled.div`
   display: flex;
@@ -60,7 +61,9 @@ const InvestDaysImpl: React.FC = () => {
 
 const InvestDaysDays: React.FC = () => (
   <InvestDaysVMProvider>
-    <InvestDaysImpl />
+    <AnimatedPage>
+      <InvestDaysImpl />
+    </AnimatedPage>
   </InvestDaysVMProvider>
 );
 export default InvestDaysDays;

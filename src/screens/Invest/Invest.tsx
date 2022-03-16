@@ -13,6 +13,7 @@ import rocket2 from "@src/assets/images/rocket2.svg";
 import rocket3 from "@src/assets/images/rocket3.svg";
 import { useNavigate } from "react-router-dom";
 import { useStores } from "@stores";
+import AnimatedPage from "@components/AnimatedPage";
 
 const Root = styled.div`
   display: flex;
@@ -113,7 +114,9 @@ const InvestImpl: React.FC = () => {
 
 const Invest: React.FC = () => (
   <InvestVMProvider>
-    <InvestImpl />
+    <AnimatedPage>
+      <InvestImpl />
+    </AnimatedPage>
   </InvestVMProvider>
 );
 export default Invest;

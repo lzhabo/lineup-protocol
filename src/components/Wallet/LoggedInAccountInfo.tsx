@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import { Row } from "@components/Flex";
 import SizedBox from "@components/SizedBox";
 import Text from "@components/Text";
 import centerEllipsis from "@src/utils/centerEllipsis";
-import arrowIcon from "@src/assets/icons/arrowDown.svg";
 import * as identityImg from "identity-img";
 import { observer } from "mobx-react-lite";
-import Tooltip from "../Tooltip";
 
 interface IProps {
   address: string;
@@ -60,26 +58,37 @@ const AddressContainer = styled.div<{ expanded: boolean }>`
 `;
 
 const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
+  // const { accountStore } = useStores();
   const avatar = address && identityImg.create(address, { size: 24 * 3 });
-  const [accountOpened, setAccountOpened] = useState<boolean>(false);
+  // const [accountOpened, setAccountOpened] = useState<boolean>(false);
   return (
     <Root>
       <SizedBox width={24} />
-      <Tooltip
-        config={{
-          placement: "bottom-end",
-          trigger: "click",
-          onVisibleChange: setAccountOpened,
-        }}
-        content={<div>hello</div>}
+      {/*<Tooltip*/}
+      {/*  config={{*/}
+      {/*    placement: "bottom-end",*/}
+      {/*    trigger: "click",*/}
+      {/*    onVisibleChange: setAccountOpened,*/}
+      {/*  }}*/}
+      {/*  content={*/}
+      {/*    <div*/}
+      {/*      style={{ height: "100%", cursor: "pointer" }}*/}
+      {/*      onClick={accountStore.disconnect}*/}
+      {/*    >*/}
+      {/*      Disconnect*/}
+      {/*    </div>*/}
+      {/*  }*/}
+      {/*>*/}
+      <AddressContainer
+        // expanded={accountOpened}
+        expanded={false}
       >
-        <AddressContainer expanded={accountOpened}>
-          <img className="avatar" src={avatar!} alt="avatar" />
-          <Text>{centerEllipsis(address ?? "", 6)}</Text>
-          <SizedBox width={10} />
-          <img src={arrowIcon} className="menu-arrow" alt="arrow" />
-        </AddressContainer>
-      </Tooltip>
+        <img className="avatar" src={avatar!} alt="avatar" />
+        <Text>{centerEllipsis(address ?? "", 10)}</Text>
+        {/*<SizedBox width={10} />*/}
+        {/*<img src={arrowIcon} className="menu-arrow" alt="arrow" />*/}
+      </AddressContainer>
+      {/*</Tooltip>*/}
     </Root>
   );
 };

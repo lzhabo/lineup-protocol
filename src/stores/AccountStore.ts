@@ -77,6 +77,11 @@ class AccountStore {
     }
   };
 
+  disconnect = () => {
+    // console.log(this.web3.eth.currentProvider);
+    // (this.web3.eth.currentProvider as HttpProvider).disconnect();
+  };
+
   switchChain = async (chainId: CHAIN_ID) => {
     await (this.web3.eth.currentProvider as any).send(
       "wallet_addEthereumChain",
