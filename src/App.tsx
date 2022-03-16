@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
 import Header from "@components/Header";
-import { Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Invest from "@screens/Invest";
 import { ROUTES } from "@src/constants";
 import Dashboard from "@screens/Dashboard";
 import Footer from "@components/Footer";
 import InvestCard from "@screens/InvestCard/InvestCard";
 import { AnimatePresence } from "framer-motion";
-import { toast } from "react-toastify";
 
 interface IProps {}
 
@@ -26,7 +25,7 @@ const Root = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  height: calc(100vh - 138px);
+  min-height: calc(100vh - 138px);
   padding-top: 32px;
 `;
 

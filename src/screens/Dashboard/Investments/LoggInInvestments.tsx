@@ -4,12 +4,13 @@ import Text from "@src/components/Text";
 import SizedBox from "@components/SizedBox";
 import Button from "@components/Button";
 import { ReactComponent as Plus } from "@src/assets/icons/plus.svg";
-import { ReactComponent as DepositsIcon } from "@src/assets/icons/deposits.svg";
+import { ReactComponent as NoResult } from "@src/assets/icons/noResult.svg";
 import Card from "@components/Card";
 import { useStores } from "@stores";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@src/constants";
 import { observer } from "mobx-react-lite";
+import DepositCard from "@screens/Dashboard/Investments/DepositCard";
 
 interface IProps {}
 
@@ -28,27 +29,29 @@ const NotificationCard = styled(Card)`
 `;
 
 const LoggInInvestments: React.FC<IProps> = () => {
-  const { accountStore } = useStores();
+  const investment = [1];
   return (
     <Root>
-      <NotificationCard>
-        <DepositsIcon />
-        <SizedBox height={8} />
-        <Text type="secondary">Connect your wallet to see deposits</Text>
-      </NotificationCard>
-      {accountStore.address == null ? (
-        <Button onClick={accountStore.metamaskLogin} fixed>
-          Connect wallet
-        </Button>
+      {investment.length === 0 ? (
+        <NotificationCard>
+          <NoResult />
+          <SizedBox height={8} />
+          <Text type="secondary">
+            You don’t have any deposits yet.
+            <br />
+            Press the “Invest” button below to invest.
+          </Text>
+        </NotificationCard>
       ) : (
-        <Link to={ROUTES.INVEST}>
-          <Button fixed>
-            <Plus />
-            <SizedBox width={8} />
-            Invest
-          </Button>
-        </Link>
+        Array.from({ length: 3 }).map(() => <DepositCard />)
       )}
+      <Link to={ROUTES.INVEST}>
+        <Button fixed>
+          <Plus />
+          <SizedBox width={8} />
+          Invest
+        </Button>
+      </Link>
     </Root>
   );
 };

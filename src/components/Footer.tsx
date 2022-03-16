@@ -12,23 +12,13 @@ const Root = styled.div`
   flex-direction: row;
   justify-content: space-between;
   box-sizing: border-box;
-  min-height: 100%;
   width: calc(100% - 32px);
   max-width: calc(1160px + 32px);
-  margin: 0 16px;
+  margin: 40px 16px 0;
   text-align: left;
 
   border-top: 2px #2a2a32 solid;
   padding: 16px;
-  //path {
-  //  transition: 0.4s;
-  //  fill: #ffffff;
-  //}
-  //:hover {
-  //  path {
-  //    fill: #a2a2c0;
-  //  }
-  //}
 `;
 const Footer: React.FC<IProps> = () => {
   return (
@@ -37,11 +27,6 @@ const Footer: React.FC<IProps> = () => {
         LineUp Protocol, Escape, 2022
       </Text>
       <Row mainAxisSize="fit-content">
-        {/*<Desktop type="secondary">Join us on social media</Desktop>*/}
-        {/*<Twitter*/}
-        {/*  style={{ minWidth: 21, cursor: "pointer" }}*/}
-        {/*  onClick={() => window.open("https://t.me/nftescape", "_blank")}*/}
-        {/*/>*/}
         <SizedBox width={20} />
         <Telegram
           style={{ minWidth: 21, cursor: "pointer" }}
