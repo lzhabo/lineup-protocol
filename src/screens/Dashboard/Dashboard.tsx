@@ -17,13 +17,6 @@ const Root = styled.div`
   width: 100%;
   min-height: 100%;
   max-width: calc(1160px + 32px);
-  margin-bottom: 24px;
-  //margin-top: 56px;
-  text-align: left;
-
-  //@media (min-width: 768px) {
-  //  margin-top: 56px;
-  //}
 `;
 const DashboardImpl: React.FC = () => {
   return (
@@ -32,7 +25,7 @@ const DashboardImpl: React.FC = () => {
         {() => (
           <Root>
             <TotalValue />
-            <SizedBox height={54} />
+            <SizedBox height={40} />
             <Investments />
           </Root>
         )}

@@ -26,6 +26,8 @@ const Root = styled.div`
 `;
 const Content = styled.div`
   display: flex;
+  height: calc(100vh - 138px);
+  padding-top: 32px;
 `;
 
 const App: React.FunctionComponent<IProps> = () => {

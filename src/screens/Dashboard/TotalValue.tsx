@@ -21,17 +21,36 @@ const Top = styled.div`
 
   background: url(${waves}) bottom right #565cbf;
   background-size: cover;
-  padding: 24px 32px;
+  padding: 27px 16px;
   border-radius: 16px 16px 0 0;
+
+  @media (min-width: 768px) {
+    padding: 24px 32px;
+  }
 `;
 const Bottom = styled.div`
   display: flex;
-  padding: 24px 32px;
+  padding: 16px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background: #1f1e25;
-  border-radius: 0px 1px 16px 16px;
+  border-radius: 0 1px 16px 16px;
+  @media (min-width: 768px) {
+    padding: 24px 32px;
+  }
+`;
+const TotalValueTitle = styled.div`
+  color: #ffffff;
+  font-size: 26px;
+  line-height: 34px;
+  font-weight: 600;
+  width: 100%;
+
+  @media (min-width: 768px) {
+    font-size: 40px;
+    line-height: 56px;
+  }
 `;
 const TotalValue: React.FC<IProps> = () => {
   const vm = useDashboardVM();
@@ -40,19 +59,17 @@ const TotalValue: React.FC<IProps> = () => {
       <Top>
         <Text size="medium">Total Value</Text>
         <SizedBox height={8} />
-        <Text size="large" weight={600}>
-          ${vm.totalValue.toFormat(2)}
-        </Text>
+        <TotalValueTitle>${vm.totalValue.toFormat(2)}</TotalValueTitle>
       </Top>
       <SizedBox height={2} />
       <Bottom>
         <Column crossAxisSize="max">
           <Text type="secondary">Total value locked</Text>
-          <Text weight={500}>${vm.totalLocked?.toFormat(2)}</Text>
+          <Text size="medium">${vm.totalLocked?.toFormat(2)}</Text>
         </Column>
         <Column crossAxisSize="max">
           <Text type="secondary">Total profit</Text>
-          <Text>${vm.totalProfit?.toFormat(2)}</Text>
+          <Text size="medium">${vm.totalProfit?.toFormat(2)}</Text>
         </Column>
       </Bottom>
     </Root>

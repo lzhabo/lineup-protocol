@@ -31,18 +31,11 @@ const LoggInInvestments: React.FC<IProps> = () => {
   const { accountStore } = useStores();
   return (
     <Root>
-      <Text weight={600} size="title">
-        My Investments
-      </Text>
-      <SizedBox height={24} />
       <NotificationCard>
         <DepositsIcon />
         <SizedBox height={8} />
         <Text type="secondary">Connect your wallet to see deposits</Text>
       </NotificationCard>
-      {/*{Array.from({ length: 2 }).map((_, i) => (*/}
-      {/*  <DepositCard key={i} />*/}
-      {/*))}*/}
       {accountStore.address == null ? (
         <Button onClick={accountStore.metamaskLogin} fixed>
           Connect wallet

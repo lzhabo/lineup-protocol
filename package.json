@@ -21,6 +21,7 @@
     "@waves/provider-keeper": "^0.1.3",
     "@waves/signer": "^1.0.6",
     "@waves/waves-transactions": "^4.2.1-beta.2",
+    "@web3-react/injected-connector": "^6.0.7",
     "axios": "^0.24.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.0",
