@@ -21,15 +21,10 @@ const Root = styled.div`
   justify-content: center;
   box-sizing: border-box;
   padding: 0 16px;
-  width: 100%;
-  min-height: 100%;
   max-width: calc(1160px + 32px);
-  margin-bottom: 24px;
-  margin-top: 56px;
   text-align: left;
 
   @media (min-width: 768px) {
-    margin-top: 56px;
   }
 `;
 
@@ -39,7 +34,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   & > * {
-    max-width: 330px;
+    //max-width: 330px;
     margin: 0 0 16px 0;
   }
   :last-child {

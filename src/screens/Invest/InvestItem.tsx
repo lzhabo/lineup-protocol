@@ -25,6 +25,9 @@ const Top = styled.div`
   border-radius: 16px 16px 0 0;
   padding: 28px 16px;
   justify-content: space-between;
+  @media (min-width: 768px) {
+    padding: 28px 32px;
+  }
 `;
 const Bottom = styled.div`
   display: flex;
@@ -32,6 +35,9 @@ const Bottom = styled.div`
   background: #1f1e25;
   padding: 16px;
   border-radius: 0 0 16px 16px;
+  @media (min-width: 768px) {
+    padding: 16px 32px;
+  }
 `;
 const Img = styled.img`
   height: 56px;
