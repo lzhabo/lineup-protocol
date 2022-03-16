@@ -22,6 +22,11 @@ interface IProps {
 const Root = styled(Card)`
   display: flex;
   flex-direction: column;
+  padding: 16px 24px;
+
+  @media (min-width: 768px) {
+    padding: 24px 32px;
+  }
 `;
 
 const InputContainer = styled.div<{

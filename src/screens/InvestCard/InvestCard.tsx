@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useMemo } from "react";
 import Layout from "@components/Layout";
-import {
-  InvestCardVMProvider,
-  useInvestCardVM,
-} from "@screens/InvestCard/InvestCardVm";
+import { InvestCardVMProvider } from "@screens/InvestCard/InvestCardVm";
 import Text from "@components/Text";
 import GoBack from "@components/GoBack";
 import { ROUTES } from "@src/constants";
@@ -26,12 +23,6 @@ const Root = styled.div`
   width: 100%;
   min-height: 100%;
   max-width: calc(1160px + 32px);
-  margin-bottom: 24px;
-  margin-top: 56px;
-  text-align: left;
-
-  @media (min-width: 768px) {
-  }
 `;
 
 const InvestCardImpl: React.FC = () => {
@@ -48,10 +39,7 @@ const InvestCardImpl: React.FC = () => {
       <Root>
         <GoBack link={ROUTES.INVEST} text="Back to Invest" />
         <SizedBox height={32} />
-        <Column
-          alignItems="center"
-          style={{ maxWidth: "calc(480px + 32px)", padding: "0 16px" }}
-        >
+        <Column alignItems="center" style={{ maxWidth: "calc(480px + 32px)" }}>
           <Text textAlign="center" size="title">
             Invest to {lock?.lockPeriodDays}-day locking period
           </Text>

@@ -16,15 +16,14 @@ const Root = styled.div`
   justify-content: center;
   box-sizing: border-box;
   min-width: 100%;
-  min-height: 100%;
-  margin-bottom: 24px;
+  //min-height: 100%;
   @media (min-width: 880px) {
     max-width: 480px;
   }
 `;
 const LockDetails = styled(Column)`
   box-sizing: border-box;
-  padding: 0 32px;
+  padding: 0 24px;
 `;
 const AmountToLock: React.FC<IProps> = () => {
   const [v, setV] = useState<BN>(BN.ZERO);
