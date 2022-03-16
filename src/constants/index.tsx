@@ -1,7 +1,7 @@
 export const ROUTES = {
   ROOT: "/",
   INVEST: "/invest",
-  INVEST_DAYS: "/invest/:days",
+  INVEST_CARD: "/invest/:id",
   DASHBOARD: "/dashboard",
 };
 

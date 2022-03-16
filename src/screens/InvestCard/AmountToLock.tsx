@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import SizedBox from "@components/SizedBox";
 import { Column } from "@components/Flex";
 import Button from "@components/Button";
-import LockInfo from "@screens/InvestDays/LockInfo";
+import LockInfo from "@screens/InvestCard/LockInfo";
 import TokenInput from "@components/TokenInput";
 import BN from "@src/utils/BN";
 

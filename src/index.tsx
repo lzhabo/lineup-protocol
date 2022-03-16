@@ -7,8 +7,8 @@ import "normalize.css";
 import { RootStore, storesContext } from "@stores";
 import { loadState, saveState } from "@src/utils/localStorage";
 import { autorun } from "mobx";
-import { Web3ReactProvider } from "@web3-react/core";
-import Web3 from "web3";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const initState = loadState();
 
@@ -22,21 +22,14 @@ autorun(
   { delay: 1000 }
 );
 
-function getLibrary(provider: any) {
-  const e = new Web3(provider);
-  console.log(e);
-  return e;
-}
-
 ReactDOM.render(
   <React.StrictMode>
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <storesContext.Provider value={mobxStore}>
-        <Router>
-          <App />
-        </Router>
-      </storesContext.Provider>
-    </Web3ReactProvider>
+    <storesContext.Provider value={mobxStore}>
+      <Router>
+        <App />
+        <ToastContainer theme={"dark"} />
+      </Router>
+    </storesContext.Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -6,8 +6,9 @@ import Invest from "@screens/Invest";
 import { ROUTES } from "@src/constants";
 import Dashboard from "@screens/Dashboard";
 import Footer from "@components/Footer";
-import InvestDays from "@screens/InvestDays/InvestDays";
+import InvestCard from "@screens/InvestCard/InvestCard";
 import { AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
 
 interface IProps {}
 
@@ -36,7 +37,7 @@ const App: React.FunctionComponent<IProps> = () => {
         <AnimatePresence exitBeforeEnter>
           <Routes key={location.pathname} location={location}>
             <Route path={ROUTES.INVEST} element={<Invest />} />
-            <Route path={ROUTES.INVEST_DAYS} element={<InvestDays />} />
+            <Route path={ROUTES.INVEST_CARD} element={<InvestCard />} />
             <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
             <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} />} />
           </Routes>

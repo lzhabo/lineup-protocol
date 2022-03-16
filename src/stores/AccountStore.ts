@@ -1,6 +1,7 @@
 import RootStore from "@stores/RootStore";
 import { makeAutoObservable } from "mobx";
 import Web3 from "web3";
+import { toast } from "react-toastify";
 
 export enum LOGIN_TYPE {
   TRUST_WALLET = "TRUST_WALLET",
@@ -60,14 +61,21 @@ class AccountStore {
   web3 = new Web3(Web3.givenProvider);
   address: string | null = null;
   setAddress = (address: string) => (this.address = address);
-
+  installed = false;
+  private setInstalled = (v: boolean) => (this.installed = v);
   constructor(rootStore: RootStore, initState?: ISerializedAccountStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
-    this.web3.eth.getAccounts().then((accounts) => {
-      console.log(accounts);
-      if (accounts.length > 0) this.metamaskLogin();
-    });
+    this.web3.eth
+      .getAccounts()
+      .then((accounts) => {
+        this.setInstalled(true);
+        if (accounts.length > 0) this.metamaskLogin();
+      })
+      .catch(() => {
+        this.setInstalled(false);
+        toast("Metamask is not installed", { type: "error" });
+      });
   }
 
   metamaskLogin = async () => {

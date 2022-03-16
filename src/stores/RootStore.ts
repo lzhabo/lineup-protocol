@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, when } from "mobx";
 import AccountStore, { ISerializedAccountStore } from "@stores/AccountStore";
 import InvestStore from "@stores/InvestStore";
 
@@ -22,6 +22,10 @@ export default class RootStore {
     this.accountStore = new AccountStore(this, initState?.accountStore);
     this.investStore = new InvestStore(this);
     makeAutoObservable(this);
+    when(
+      () => this.accountStore.installed,
+      () => Promise.all([this.investStore.sync()])
+    );
   }
 
   serialize = (): ISerializedRootStore => ({

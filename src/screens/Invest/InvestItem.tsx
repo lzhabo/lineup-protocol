@@ -4,10 +4,10 @@ import { Column } from "@components/Flex";
 import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import Button from "@components/Button";
+import { Lock } from "@stores/InvestStore";
 
 interface IProps {
-  periodDays: number;
-  apy: number;
+  lock: Lock;
   description: string;
   pic: string;
   onClick: () => void;
@@ -37,19 +37,13 @@ const Img = styled.img`
   height: 56px;
   width: 56px;
 `;
-const InvestCard: React.FC<IProps> = ({
-  periodDays,
-  description,
-  apy,
-  pic,
-  onClick,
-}) => {
+const InvestItem: React.FC<IProps> = ({ description, lock, pic, onClick }) => {
   return (
     <Root>
       <Top>
         <Column>
-          <Text>{periodDays.toFixed(0)} min locking period</Text>
-          <Text size="big">{apy}% APY</Text>
+          <Text>{lock.lockPeriodDays}-day locking period</Text>
+          <Text size="big">{lock.basePercent / 100}% APY</Text>
         </Column>
         <Img src={pic} />
       </Top>
@@ -64,4 +58,4 @@ const InvestCard: React.FC<IProps> = ({
     </Root>
   );
 };
-export default InvestCard;
+export default InvestItem;

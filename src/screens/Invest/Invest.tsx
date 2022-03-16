@@ -3,7 +3,6 @@ import React from "react";
 import { Observer, useObserver } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import { InvestVMProvider } from "@screens/Invest/InvestVm";
-import InvestCard from "@screens/Invest/InvestCard";
 import Text from "@components/Text";
 import GoBack from "@components/GoBack";
 import { ROUTES } from "@src/constants";
@@ -14,6 +13,7 @@ import rocket3 from "@src/assets/images/rocket3.svg";
 import { useNavigate } from "react-router-dom";
 import { useStores } from "@stores";
 import AnimatedPage from "@components/AnimatedPage";
+import InvestItem from "./InvestItem";
 
 const Root = styled.div`
   display: flex;
@@ -62,26 +62,20 @@ const InvestImpl: React.FC = () => {
   const locks = useObserver(() => investStore.locks);
   const tariffs = locks && [
     {
-      id: locks[0].id,
+      lock: locks[0],
       pic: rocket1,
-      periodDays: locks[0].lockPeriod / 60,
-      apy: locks[0].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
     {
-      id: locks[1].id,
+      lock: locks[1],
       pic: rocket2,
-      periodDays: locks[1].lockPeriod / 60,
-      apy: locks[1].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
     {
-      id: locks[2].id,
+      lock: locks[2],
       pic: rocket3,
-      periodDays: locks[2].lockPeriod / 60,
-      apy: locks[2].lockPeriod / 100,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
     },
@@ -98,10 +92,12 @@ const InvestImpl: React.FC = () => {
             <SizedBox height={16} />
             <Container>
               {tariffs?.map((t, index) => (
-                <InvestCard
+                <InvestItem
                   {...t}
                   key={index + "invest"}
-                  onClick={() => navigate(`/invest/${t.id}`)}
+                  onClick={() =>
+                    navigate(ROUTES.INVEST_CARD.replace(":id", t.lock.id))
+                  }
                 />
               ))}
             </Container>
