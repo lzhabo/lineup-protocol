@@ -70,14 +70,7 @@ const LoggedInAccountInfo: React.FC<IProps> = ({ address }) => {
       {/*    trigger: "click",*/}
       {/*    onVisibleChange: setAccountOpened,*/}
       {/*  }}*/}
-      {/*  content={*/}
-      {/*    <div*/}
-      {/*      style={{ height: "100%", cursor: "pointer" }}*/}
-      {/*      onClick={accountStore.disconnect}*/}
-      {/*    >*/}
-      {/*      Disconnect*/}
-      {/*    </div>*/}
-      {/*  }*/}
+      {/*    content={<Text onClick={() => accountStore.logout()}>Disconnect</Text>}*/}
       {/*>*/}
       <AddressContainer
         // expanded={accountOpened}

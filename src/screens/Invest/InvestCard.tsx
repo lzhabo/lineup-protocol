@@ -16,7 +16,6 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-
   justify-self: center;
 `;
 

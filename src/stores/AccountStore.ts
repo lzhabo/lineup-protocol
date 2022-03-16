@@ -60,10 +60,12 @@ class AccountStore {
   web3 = new Web3(Web3.givenProvider);
   address: string | null = null;
   setAddress = (address: string) => (this.address = address);
+
   constructor(rootStore: RootStore, initState?: ISerializedAccountStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
     this.web3.eth.getAccounts().then((accounts) => {
+      console.log(accounts);
       if (accounts.length > 0) this.metamaskLogin();
     });
   }

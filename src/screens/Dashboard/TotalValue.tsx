@@ -5,6 +5,7 @@ import waves from "@src/assets/images/waves.svg";
 import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import { Column } from "@src/components/Flex";
+import { useDashboardVM } from "@screens/Dashboard/DashboardVm";
 
 interface IProps {}
 
@@ -33,25 +34,25 @@ const Bottom = styled.div`
   border-radius: 0px 1px 16px 16px;
 `;
 const TotalValue: React.FC<IProps> = () => {
+  const vm = useDashboardVM();
   return (
     <Root>
       <Top>
         <Text size="medium">Total Value</Text>
         <SizedBox height={8} />
         <Text size="large" weight={600}>
-          $0.00
+          ${vm.totalValue.toFormat(2)}
         </Text>
       </Top>
       <SizedBox height={2} />
       <Bottom>
         <Column crossAxisSize="max">
           <Text type="secondary">Total value locked</Text>
-          <Text weight={500}>$0.00</Text>
+          <Text weight={500}>${vm.totalLocked?.toFormat(2)}</Text>
         </Column>
         <Column crossAxisSize="max">
           <Text type="secondary">Total profit</Text>
-          <Text>$0.00</Text>
-          {/*<Text>$99,999.99 (+14.88%)</Text>*/}
+          <Text>${vm.totalProfit?.toFormat(2)}</Text>
         </Column>
       </Bottom>
     </Root>

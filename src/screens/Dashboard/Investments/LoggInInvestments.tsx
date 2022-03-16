@@ -27,7 +27,7 @@ const NotificationCard = styled(Card)`
   padding: 38px !important;
 `;
 
-const Deposits: React.FC<IProps> = () => {
+const LoggInInvestments: React.FC<IProps> = () => {
   const { accountStore } = useStores();
   return (
     <Root>
@@ -59,4 +59,4 @@ const Deposits: React.FC<IProps> = () => {
     </Root>
   );
 };
-export default observer(Deposits);
+export default observer(LoggInInvestments);

@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import Card from "@components/Card";
-import Divider from "@components/Divider";
 import SizedBox from "@components/SizedBox";
-import { Row } from "@components/Flex";
-import Text from "@components/Text";
+import { Column } from "@components/Flex";
 import Button from "@components/Button";
 import LockInfo from "@screens/InvestDays/LockInfo";
 import TokenInput from "@components/TokenInput";
@@ -25,40 +22,37 @@ const Root = styled.div`
     max-width: 480px;
   }
 `;
-
+const LockDetails = styled(Column)`
+  box-sizing: border-box;
+  padding: 0 32px;
+`;
 const AmountToLock: React.FC<IProps> = () => {
   const [v, setV] = useState<BN>(BN.ZERO);
+  const balance = BN.parseUnits(12.33, 6);
+
   return (
     <Root>
-      <Card>
-        <TokenInput amount={v} setAmount={setV} decimals={18} />
-        <SizedBox height={8} />
-        <Divider style={{ background: "#3B3B46", height: 1 }} />
-        <SizedBox height={8} />
-        <Row justifyContent="space-between">
-          <Text type="secondary" fitContent>
-            Balance: 1,230.49502
-          </Text>
-          <Row mainAxisSize="fit-content">
-            {["25%", "50%", "75%", "100%"].map((v, i, arr) => (
-              <Text
-                fitContent
-                type="purple"
-                key={v}
-                style={{ marginRight: arr.length - 1 === i ? 0 : 8 }}
-              >
-                {v}
-              </Text>
-            ))}
-          </Row>
-        </Row>
-      </Card>
+      <TokenInput
+        amount={v}
+        setAmount={setV}
+        decimals={6}
+        balance={balance}
+        symbol="$"
+      />
       <SizedBox height={26} />
-      <LockInfo name="Approx. profit" value="$999.99" />
-      <LockInfo name="Unlock" value="21/04/22, 13:37" />
-      <LockInfo name="Transaction fee" value="$12.34" />
+      <LockDetails crossAxisSize="max">
+        <LockInfo name="Approx. profit" value="$999.99" />
+        <LockInfo name="Unlock" value="21/04/22, 13:37" />
+        <LockInfo name="Transaction fee" value="$12.34" />
+      </LockDetails>
       <SizedBox height={24} />
-      <Button fixed> Enter amount to lock</Button>
+      <Button
+        fixed
+        onClick={() => console.log(v.toString())}
+        disabled={v.eq(0) || v.gt(balance)}
+      >
+        Enter amount to lock
+      </Button>
     </Root>
   );
 };

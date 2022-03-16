@@ -11,11 +11,13 @@ const Text = styled.div<{
   fitContent?: boolean;
   nowrap?: boolean;
   textAlign?: TTextAlign;
+  onClick?: () => void;
 }>`
   width: ${({ fitContent }) => (fitContent ? "fit-content" : "100%")};
   font-weight: ${({ weight }) => weight ?? 500};
   white-space: ${({ nowrap }) => (nowrap ? "nowrap" : "unset")};
   text-align: ${({ textAlign }) => textAlign ?? "default"};
+  ${({ onClick }) => onClick != null && "cursor: pointer;"};
 
   ${({ size }) =>
     (() => {
@@ -41,6 +43,8 @@ const Text = styled.div<{
           return "color: #ffffff";
         case "purple":
           return "color: #767EFF;";
+        case "error":
+          return "color: #E34744;";
         default:
           return "color: #ffffff";
       }
