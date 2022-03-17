@@ -25,10 +25,10 @@ const Root = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  min-height: calc(100vh - 119px);
+  min-height: calc(100vh - 194px);
   padding-top: 32px;
   @media (min-width: 768px) {
-    min-height: calc(100vh - 138px);
+    min-height: calc(100vh - 210px);
   }
 `;
 
