@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import SizedBox from "@components/SizedBox";
 import { Column } from "@components/Flex";
 import Button from "@components/Button";
@@ -19,7 +19,6 @@ const Root = styled.div`
   box-sizing: border-box;
   min-width: 100%;
   width: 100%;
-  //min-height: 100%;
   @media (min-width: 880px) {
     max-width: 480px;
   }

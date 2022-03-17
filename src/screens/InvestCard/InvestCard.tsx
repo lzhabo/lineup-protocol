@@ -10,7 +10,6 @@ import GoBack from "@components/GoBack";
 import { ROUTES } from "@src/constants";
 import SizedBox from "@components/SizedBox";
 import AmountToLock from "./AmountToLock";
-import { Column } from "@components/Flex";
 import AnimatedPage from "@components/AnimatedPage";
 import { useObserver } from "mobx-react-lite";
 

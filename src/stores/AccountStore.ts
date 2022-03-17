@@ -1,10 +1,12 @@
 import RootStore from "@stores/RootStore";
 import { makeAutoObservable } from "mobx";
-import Web3 from "web3";
 import { toast } from "react-toastify";
 import BN from "@src/utils/BN";
 import tokens from "@src/constants/tokens.json";
 import erc20Abi from "@src/constants/erc20Abi.json";
+import { JsonRpcSigner, Web3Provider } from "@ethersproject/providers";
+import { Contract } from "@ethersproject/contracts";
+
 export enum LOGIN_TYPE {
   TRUST_WALLET = "TRUST_WALLET",
   METAMASK = "METAMASK",
@@ -68,36 +70,60 @@ export const CHAIN_ID_DETAILS = {
 
 class AccountStore {
   public readonly rootStore: RootStore;
-  web3 = new Web3(Web3.givenProvider);
+
+  //wallet address
   address: string | null = null;
   setAddress = (address: string) => (this.address = address);
+
+  //is metamask installed
   installed = false;
   private setInstalled = (v: boolean) => (this.installed = v);
+
+  //ethers provider
+  provider: Web3Provider | null = null;
+  setProvider = (provider: Web3Provider) => (this.provider = provider);
+
+  //ethers signer
+  signer: JsonRpcSigner | null = null;
+  setSigner = (signer: JsonRpcSigner) => (this.signer = signer);
+
   constructor(rootStore: RootStore, initState?: ISerializedAccountStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
-    this.web3.eth
-      .getAccounts()
-      .then((accounts) => {
-        this.setInstalled(true);
-        if (accounts.length > 0) {
-          this.metamaskLogin().then(this.syncBalances);
-        }
-      })
-      .catch(() => {
-        this.setInstalled(false);
-        toast("Metamask is not installed", { type: "error" });
-      });
+    try {
+      // A Web3Provider wraps a standard Web3 provider, which is
+      // what MetaMask injects as window.ethereum into each page
+      const provider = new Web3Provider((window as any).ethereum);
+      this.setProvider(provider);
+
+      //If there is some accounts connected we will login
+      provider
+        .listAccounts()
+        .then((accounts) => {
+          this.setInstalled(true);
+          if (accounts.length > 0) {
+            this.metamaskLogin().then(this.syncBalances);
+          }
+        })
+        .then(this.disconnect);
+    } catch (e) {
+      this.setInstalled(false);
+      toast("Metamask is not installed", { type: "error" });
+    }
+
     setInterval(this.syncBalances, 10000);
   }
+
   balances: TBalance[] = [];
   setBalances = (balances: TBalance[]) => (this.balances = balances);
   syncBalances = async () => {
-    if (!this.installed || this.address == null) return;
+    if (!this.installed || this.address == null || this.provider == null) {
+      return;
+    }
     const balances = await Promise.all(
       tokens.map(async (t) => {
-        const contr = new this.web3.eth.Contract(erc20Abi as any, t.address);
-        const amount = await contr.methods.balanceOf(this.address).call();
+        const contr = new Contract(t.address, erc20Abi, this.provider!);
+        const amount = await contr.balanceOf(this.address);
         return {
           ...t,
           amount: new BN(amount),
@@ -108,28 +134,33 @@ class AccountStore {
   };
 
   metamaskLogin = async () => {
-    const accounts = await this.web3.eth.requestAccounts();
+    if (this.provider == null) return;
+    // MetaMask requires requesting permission to connect users accounts
+    const accounts = await this.provider.send("eth_requestAccounts", []);
     this.setAddress(accounts[0] ?? null);
-    const chainId = await this.web3.eth.getChainId();
-    if (!Object.values(CHAIN_ID).includes(chainId)) {
+
+    // The MetaMask plugin also allows signing transactions to
+    // send ether and pay to change state within the blockchain.
+    // For this, you need the account signer...
+    const signer = this.provider.getSigner();
+    this.setSigner(signer);
+
+    const network = await this.provider.getNetwork();
+
+    if (!Object.values(CHAIN_ID).includes(network.chainId)) {
       await this.switchChain(CHAIN_ID.BSC_TESTNET);
     }
   };
 
-  disconnect = () => {
-    // console.log(this.web3.eth.currentProvider);
-    // (this.web3.eth.currentProvider as HttpProvider).disconnect();
-  };
+  disconnect = () => {};
 
   switchChain = async (chainId: CHAIN_ID) => {
-    await (this.web3.eth.currentProvider as any).send(
-      "wallet_addEthereumChain",
-      [{ ...CHAIN_ID_DETAILS[chainId], chainId: `0x${chainId.toString(16)}` }]
-    );
-    await (this.web3.eth.currentProvider as any).send(
-      "wallet_switchEthereumChain",
-      [{ chainId: `0x${chainId.toString(16)}` }]
-    );
+    await this.provider?.send("wallet_addEthereumChain", [
+      { ...CHAIN_ID_DETAILS[chainId], chainId: `0x${chainId.toString(16)}` },
+    ]);
+    await this.provider?.send("wallet_switchEthereumChain", [
+      { ...CHAIN_ID_DETAILS[chainId], chainId: `0x${chainId.toString(16)}` },
+    ]);
   };
 
   serialize = (): ISerializedAccountStore => ({});

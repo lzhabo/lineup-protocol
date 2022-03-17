@@ -59,13 +59,16 @@ const DepositCard: React.FC<IProps> = () => {
       <Divider />
       <SizedBox height={24} />
       <Row>
-        {actions.map(({ title, onClick }) => (
-          <>
-            <Text fitContent type="purple" onClick={onClick}>
-              {title}
-            </Text>
-            <SizedBox width={24} />
-          </>
+        {actions.map(({ title, onClick }, i) => (
+          <Text
+            fitContent
+            type="purple"
+            onClick={onClick}
+            style={{ marginRight: 24 }}
+            key={i}
+          >
+            {title}
+          </Text>
         ))}
       </Row>
     </Card>

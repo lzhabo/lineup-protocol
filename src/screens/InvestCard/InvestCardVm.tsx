@@ -7,8 +7,6 @@ import { ROUTES } from "@src/constants";
 import { Lock } from "@stores/InvestStore";
 import { TBalance } from "@stores/AccountStore";
 import BN from "@src/utils/BN";
-import abi from "@src/constants/moneyBoxAbi.json";
-import tokenAbi from "@src/constants/erc20Abi.json";
 
 const ctx = React.createContext<InvestCardDaysVm | null>(null);
 
@@ -33,24 +31,28 @@ class InvestCardDaysVm {
     makeAutoObservable(this);
   }
 
+  //todo add deposit
   deposit = async () => {
-    const { web3, address } = this.rootStore.accountStore;
-    const { token: tokenAddress, contract: boxAddress } = this.lock!;
-    const { Contract } = web3.eth;
-    const contract = new Contract(abi as any, boxAddress, { from: address! });
-    const tokenContract = new Contract(tokenAbi as any, tokenAddress, {
-      from: address!,
-      gas: 200000,
-    });
-    const allowance = await tokenContract.methods
-      .allowance(address, boxAddress)
-      .call();
-    if (this.amount.gte(allowance)) {
-      await tokenContract.methods
-        .approve(boxAddress, this.amount.toString())
-        .call();
-    }
-    await contract.methods.invest(this.amount.toString(), this.lock?.id).call();
+    // const { web3, address } = this.rootStore.accountStore;
+    // const { token: tokenAddress, contract: boxAddress } = this.lock!;
+    // const { Contract } = web3.eth;
+    // const contract = new Contract(abi as any, boxAddress, { from: address! });
+    // const tokenContract = new Contract(tokenAbi as any, tokenAddress, {
+    //   from: address!,
+    // });
+    // const allowance = await tokenContract.methods
+    //   .allowance(address, boxAddress)
+    //   .call();
+    // console.log({ allowance });
+    // if (this.amount.gte(allowance)) {
+    //   console.log("хуй");
+    //   const res = await tokenContract.methods
+    //     .approve(boxAddress, this.amount.toString())
+    //     .call();
+    //   console.log(res);
+    // }
+    // console.log(this.amount.toString(), this.lock?.id);
+    // await contract.methods.invest(this.amount.toString(), this.lock?.id).call();
   };
 
   get balance(): TBalance | null {

@@ -6,7 +6,6 @@ import Button from "@components/Button";
 import { ReactComponent as Plus } from "@src/assets/icons/plus.svg";
 import { ReactComponent as NoResult } from "@src/assets/icons/noResult.svg";
 import Card from "@components/Card";
-import { useStores } from "@stores";
 import { Link } from "react-router-dom";
 import { ROUTES } from "@src/constants";
 import { observer } from "mobx-react-lite";
@@ -43,7 +42,7 @@ const LoggInInvestments: React.FC<IProps> = () => {
           </Text>
         </NotificationCard>
       ) : (
-        Array.from({ length: 3 }).map(() => <DepositCard />)
+        Array.from({ length: 3 }).map((_, i) => <DepositCard key={i} />)
       )}
       <Link to={ROUTES.INVEST}>
         <Button fixed>
