@@ -1,6 +1,7 @@
 import RootStore from "@stores/RootStore";
 import { makeAutoObservable } from "mobx";
-import abi from "@src/constants/moneyBoxAbi.json";
+import { Contract } from "@ethersproject/contracts";
+import moneyBoxAbi from "@src/constants/moneyBoxAbi.json";
 
 const investBoxAddress = "0xB69ae48A6B55a7Ad4D2421B9ed8fA10E645EC3e6";
 const tokenAddress = "0x651fe7a1c87CF429B3F6AF4becB5bCCf712F85EF";
@@ -50,15 +51,13 @@ class InvestStore {
   }
 
   sync = async () => {
-    const web3 = this.rootStore.accountStore.web3;
-    const tokenContract: any = new web3.eth.Contract(
-      abi as any,
-      investBoxAddress
-    );
-    const lockIds: string[] = await tokenContract.methods.getLockList().call();
+    const provider = this.rootStore.accountStore.provider;
+    if (provider == null) return;
+    const contr = new Contract(investBoxAddress, moneyBoxAbi as any, provider);
+    const lockIds: string[] = await contr.getLockList();
     const locks: Lock[] = await Promise.all(
       lockIds.map(async (id) => {
-        const lock: ILock = await tokenContract.methods.getLockData(id).call();
+        const lock: ILock = await contr.getLockData(id);
         return new Lock({ ...lock, id }, investBoxAddress, tokenAddress);
       })
     );

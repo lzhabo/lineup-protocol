@@ -16,7 +16,6 @@ const Root = styled.div`
 
 const Investments: React.FC<IProps> = () => {
   const { accountStore } = useStores();
-  console.log(accountStore.address == null);
   return (
     <Root>
       <Text weight={600} size="big">
