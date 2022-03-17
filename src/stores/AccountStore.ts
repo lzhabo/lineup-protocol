@@ -73,7 +73,7 @@ class AccountStore {
 
   //wallet address
   address: string | null = null;
-  setAddress = (address: string) => (this.address = address);
+  private setAddress = (address: string) => (this.address = address);
 
   //is metamask installed
   installed = false;
@@ -81,11 +81,11 @@ class AccountStore {
 
   //ethers provider
   provider: Web3Provider | null = null;
-  setProvider = (provider: Web3Provider) => (this.provider = provider);
+  private setProvider = (provider: Web3Provider) => (this.provider = provider);
 
   //ethers signer
   signer: JsonRpcSigner | null = null;
-  setSigner = (signer: JsonRpcSigner) => (this.signer = signer);
+  private setSigner = (signer: JsonRpcSigner) => (this.signer = signer);
 
   constructor(rootStore: RootStore, initState?: ISerializedAccountStore) {
     this.rootStore = rootStore;
@@ -115,7 +115,7 @@ class AccountStore {
   }
 
   balances: TBalance[] = [];
-  setBalances = (balances: TBalance[]) => (this.balances = balances);
+  private setBalances = (balances: TBalance[]) => (this.balances = balances);
   syncBalances = async () => {
     if (!this.installed || this.address == null || this.provider == null) {
       return;

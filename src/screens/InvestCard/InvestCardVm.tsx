@@ -7,7 +7,10 @@ import { ROUTES } from "@src/constants";
 import { Lock } from "@stores/InvestStore";
 import { TBalance } from "@stores/AccountStore";
 import BN from "@src/utils/BN";
-
+import { Contract } from "@ethersproject/contracts";
+import abi from "@src/constants/moneyBoxAbi.json";
+import tokenAbi from "@src/constants/erc20Abi.json";
+import { toast } from "react-toastify";
 const ctx = React.createContext<InvestCardDaysVm | null>(null);
 
 export const InvestCardVMProvider: React.FC = ({ children }) => {
@@ -31,28 +34,24 @@ class InvestCardDaysVm {
     makeAutoObservable(this);
   }
 
-  //todo add deposit
   deposit = async () => {
-    // const { web3, address } = this.rootStore.accountStore;
-    // const { token: tokenAddress, contract: boxAddress } = this.lock!;
-    // const { Contract } = web3.eth;
-    // const contract = new Contract(abi as any, boxAddress, { from: address! });
-    // const tokenContract = new Contract(tokenAbi as any, tokenAddress, {
-    //   from: address!,
-    // });
-    // const allowance = await tokenContract.methods
-    //   .allowance(address, boxAddress)
-    //   .call();
-    // console.log({ allowance });
-    // if (this.amount.gte(allowance)) {
-    //   console.log("хуй");
-    //   const res = await tokenContract.methods
-    //     .approve(boxAddress, this.amount.toString())
-    //     .call();
-    //   console.log(res);
-    // }
-    // console.log(this.amount.toString(), this.lock?.id);
-    // await contract.methods.invest(this.amount.toString(), this.lock?.id).call();
+    const { provider, signer, address } = this.rootStore.accountStore;
+    if (signer == null || address == null || provider == null) return;
+    this.setLoading(true);
+    try {
+      const { token: tokenAddress, contract: boxAddress } = this.lock!;
+      const contr = new Contract(boxAddress, abi, signer);
+      const tok = new Contract(tokenAddress, tokenAbi, signer);
+      const allowance = await tok.allowance(address, boxAddress);
+      if (this.amount.gt(allowance.toString())) {
+        const res = await tok.approve(boxAddress, this.amount.toString());
+        await res.wait();
+      }
+      await contr.invest(this.amount.toString(), this.lock?.id);
+      await this.rootStore.accountStore.syncBalances();
+    } catch (e: any) {
+      toast(e.message ?? e.toString(), { type: "error" });
+    }
   };
 
   get balance(): TBalance | null {
