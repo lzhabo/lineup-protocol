@@ -5,6 +5,7 @@ import Text from "@components/Text";
 interface IProps {
   name: string;
   value: string;
+  borderless?: boolean;
 }
 
 const Root = styled.div`
@@ -15,9 +16,9 @@ const Root = styled.div`
   padding: 10px 0;
 `;
 
-const LockInfo: React.FC<IProps> = ({ name, value }) => {
+const LockInfo: React.FC<IProps> = ({ name, value, borderless }) => {
   return (
-    <Root>
+    <Root style={borderless ? { border: "none" } : {}}>
       <Text fitContent type="secondary">
         {name}
       </Text>

@@ -2,7 +2,9 @@ import RootStore from "@stores/RootStore";
 import { makeAutoObservable } from "mobx";
 import Web3 from "web3";
 import { toast } from "react-toastify";
-
+import BN from "@src/utils/BN";
+import tokens from "@src/constants/tokens.json";
+import erc20Abi from "@src/constants/erc20Abi.json";
 export enum LOGIN_TYPE {
   TRUST_WALLET = "TRUST_WALLET",
   METAMASK = "METAMASK",
@@ -20,6 +22,14 @@ export const RPC_URLS = {
   [CHAIN_ID.BSC_TESTNET]: ["https://bsc.testnet.eywa.fi"],
 };
 
+export interface TBalance {
+  amount: BN;
+  name: string;
+  symbol: string;
+  address: string;
+  decimals: number;
+  chainId: CHAIN_ID;
+}
 export const EXPLORER = {
   [CHAIN_ID.BSC]: {
     name: "BscScan",
@@ -70,13 +80,32 @@ class AccountStore {
       .getAccounts()
       .then((accounts) => {
         this.setInstalled(true);
-        if (accounts.length > 0) this.metamaskLogin();
+        if (accounts.length > 0) {
+          this.metamaskLogin().then(this.syncBalances);
+        }
       })
       .catch(() => {
         this.setInstalled(false);
         toast("Metamask is not installed", { type: "error" });
       });
+    setInterval(this.syncBalances, 10000);
   }
+  balances: TBalance[] = [];
+  setBalances = (balances: TBalance[]) => (this.balances = balances);
+  syncBalances = async () => {
+    if (!this.installed || this.address == null) return;
+    const balances = await Promise.all(
+      tokens.map(async (t) => {
+        const contr = new this.web3.eth.Contract(erc20Abi as any, t.address);
+        const amount = await contr.methods.balanceOf(this.address).call();
+        return {
+          ...t,
+          amount: new BN(amount),
+        } as TBalance;
+      })
+    );
+    this.setBalances(balances);
+  };
 
   metamaskLogin = async () => {
     const accounts = await this.web3.eth.requestAccounts();

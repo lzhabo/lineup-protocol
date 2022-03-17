@@ -70,7 +70,9 @@ const TokenInput: React.FC<IProps> = (props) => {
     []
   );
   const error = amount.gt(props.balance);
-  const balance = BN.formatUnits(props.balance, props.decimals);
+  const formatBalance = BN.formatUnits(props.balance, props.decimals).toFormat(
+    2
+  );
   return (
     <Root>
       <InputContainer focused={focused} readOnly={!props.setAmount}>
@@ -107,7 +109,7 @@ const TokenInput: React.FC<IProps> = (props) => {
       <SizedBox height={8} />
       <Row justifyContent="space-between">
         <Text type={error ? "error" : "secondary"} fitContent>
-          Balance: {balance.toFormat(2)}
+          Balance: {formatBalance} {props.symbol}
         </Text>
         <Row mainAxisSize="fit-content">
           {[25, 50, 75, 100].map((v, i, arr) => (

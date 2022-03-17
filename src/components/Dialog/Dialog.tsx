@@ -7,16 +7,14 @@ import { ReactComponent as CloseIcon } from "@src/assets/icons/close.svg";
 
 interface IProps extends IDialogPropTypes {}
 
-const Dialog: React.FC<IProps> = ({ children, ...rest }) => {
-  return (
-    <RcDialog
-      closeIcon={<CloseIcon style={{ marginTop: 8 }} />}
-      animation="zoom"
-      maskAnimation="fade"
-      {...rest}
-    >
-      {children}
-    </RcDialog>
-  );
-};
+const Dialog: React.FC<IProps> = ({ children, ...rest }) => (
+  <RcDialog
+    closeIcon={<CloseIcon style={{ marginTop: 8 }} />}
+    animation="zoom"
+    maskAnimation="fade"
+    {...rest}
+  >
+    {children}
+  </RcDialog>
+);
 export default Dialog;

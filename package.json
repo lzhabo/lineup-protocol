@@ -9,6 +9,7 @@
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
     "@ethersproject/bignumber": "^5.5.0",
+    "@eywa-fi/eywa-js-sdk": "0.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@svgr/webpack": "5.5.0",
     "@testing-library/jest-dom": "^5.11.4",

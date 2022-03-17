@@ -49,7 +49,7 @@ const InvestItem: React.FC<IProps> = ({ description, lock, pic, onClick }) => {
       <Top>
         <Column>
           <Text>{lock.lockPeriodDays}-day locking period</Text>
-          <Text size="big">{lock.basePercent / 100}% APY</Text>
+          <Text size="big">{lock.basePercent}% APY</Text>
         </Column>
         <Img src={pic} />
       </Top>

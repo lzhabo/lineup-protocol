@@ -6,6 +6,8 @@ import Button from "@components/Button";
 import LockInfo from "@screens/InvestCard/LockInfo";
 import TokenInput from "@components/TokenInput";
 import BN from "@src/utils/BN";
+import { observer } from "mobx-react-lite";
+import { useInvestCardVM } from "@screens/InvestCard/InvestCardVm";
 
 interface IProps {}
 
@@ -16,6 +18,7 @@ const Root = styled.div`
   justify-content: center;
   box-sizing: border-box;
   min-width: 100%;
+  width: 100%;
   //min-height: 100%;
   @media (min-width: 880px) {
     max-width: 480px;
@@ -26,33 +29,33 @@ const LockDetails = styled(Column)`
   padding: 0 24px;
 `;
 const AmountToLock: React.FC<IProps> = () => {
-  const [v, setV] = useState<BN>(BN.ZERO);
-  const balance = BN.parseUnits(12.33, 6);
+  const vm = useInvestCardVM();
 
   return (
     <Root>
       <TokenInput
-        amount={v}
-        setAmount={setV}
-        decimals={6}
-        balance={balance}
-        symbol="$"
+        amount={vm.amount}
+        setAmount={vm.setAmount}
+        decimals={vm.balance?.decimals ?? 18}
+        balance={vm.balance?.amount ?? BN.ZERO}
+        symbol={vm.balance?.symbol ?? ""}
       />
       <SizedBox height={26} />
       <LockDetails crossAxisSize="max">
-        <LockInfo name="Approx. profit" value="$999.99" />
-        <LockInfo name="Unlock" value="21/04/22, 13:37" />
-        <LockInfo name="Transaction fee" value="$12.34" />
+        <LockInfo name="APY" value={`${vm.lock?.basePercent ?? 0}%`} />
+        <LockInfo
+          name="Profit"
+          value={`~ ${vm.profitString} ${vm.balance?.symbol}` ?? "–"}
+        />
+        <LockInfo name="Unlock" value="21/04/22, 13:37" borderless />
       </LockDetails>
       <SizedBox height={24} />
-      <Button
-        fixed
-        onClick={() => console.log(v.toString())}
-        disabled={v.eq(0) || v.gt(balance)}
-      >
-        Enter amount to lock
+      <Button fixed onClick={vm.deposit} disabled={vm.disabled}>
+        {vm.amount.eq(0)
+          ? "Enter amount to lock"
+          : `Lock ${vm.balanceString} ${vm.balance?.symbol}`}
       </Button>
     </Root>
   );
 };
-export default AmountToLock;
+export default observer(AmountToLock);
