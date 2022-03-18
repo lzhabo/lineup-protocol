@@ -35,10 +35,11 @@ const Button = styled.button<{
   }
 
   :disabled {
-    opacity: ${({ kind }) => (kind === "secondary" ? 0.4 : 1)};
     background: #666de3;
     cursor: not-allowed;
+    opacity: 0.4;
   }
+
   @media (min-width: 768px) {
     border-radius: 16px;
   }

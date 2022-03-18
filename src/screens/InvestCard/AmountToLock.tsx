@@ -8,6 +8,7 @@ import TokenInput from "@components/TokenInput";
 import BN from "@src/utils/BN";
 import { observer } from "mobx-react-lite";
 import { useInvestCardVM } from "@screens/InvestCard/InvestCardVm";
+import DialogNotification from "@components/Dialog/DialogNotification";
 
 interface IProps {}
 
@@ -54,6 +55,16 @@ const AmountToLock: React.FC<IProps> = () => {
           ? "Enter amount to lock"
           : `Lock ${vm.balanceString} ${vm.balance?.symbol}`}
       </Button>
+      <DialogNotification
+        onClose={() => vm.setNotificationParams(null)}
+        title={vm.notificationParams?.title ?? ""}
+        description={vm.notificationParams?.description}
+        buttonsDirection={vm.notificationParams?.buttonsDirection}
+        type={vm.notificationParams?.type}
+        buttons={vm.notificationParams?.buttons}
+        style={{ maxWidth: 400 }}
+        visible={vm.notificationParams != null}
+      />
     </Root>
   );
 };

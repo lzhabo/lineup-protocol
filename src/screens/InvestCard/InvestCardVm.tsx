@@ -11,6 +11,8 @@ import { Contract } from "@ethersproject/contracts";
 import abi from "@src/constants/moneyBoxAbi.json";
 import tokenAbi from "@src/constants/erc20Abi.json";
 import { toast } from "react-toastify";
+import { IDialogNotificationProps } from "@components/Dialog/DialogNotification";
+
 const ctx = React.createContext<InvestCardDaysVm | null>(null);
 
 export const InvestCardVMProvider: React.FC = ({ children }) => {
@@ -28,6 +30,10 @@ class InvestCardDaysVm {
 
   amount: BN = BN.ZERO;
   setAmount = (amount: BN) => (this.amount = amount);
+
+  public notificationParams: IDialogNotificationProps | null = null;
+  public setNotificationParams = (params: IDialogNotificationProps | null) =>
+    (this.notificationParams = params);
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
@@ -59,20 +65,24 @@ class InvestCardDaysVm {
     if (balances.length === 0 || this.lock == null) return null;
     return balances.find(({ address }) => address === this.lock!.token) ?? null;
   }
+
   get lock(): Lock | null {
     const { locks } = this.rootStore.investStore;
     const match = matchPath(ROUTES.INVEST_CARD, window.location.pathname);
     return locks?.find(({ id }) => id === match?.params.id) ?? null;
   }
+
   get profitString() {
     return BN.formatUnits(this.amount, this.balance?.decimals ?? 18)
       .times(this.lock?.basePercent ?? 0)
       .div(100)
       .toFormat(2);
   }
+
   get balanceString() {
     return BN.formatUnits(this.amount, this.balance?.decimals).toFormat(2);
   }
+
   get disabled() {
     return (
       this.lock == null ||

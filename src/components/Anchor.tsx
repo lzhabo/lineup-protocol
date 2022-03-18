@@ -1,6 +1,6 @@
 import React, { AnchorHTMLAttributes } from "react";
 
-const Anchor: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
+export const Anchor: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
   children,
   ...rest
 }) => (
@@ -8,5 +8,3 @@ const Anchor: React.FC<AnchorHTMLAttributes<HTMLAnchorElement>> = ({
     {children}
   </a>
 );
-
-export default Anchor;
