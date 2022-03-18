@@ -35,9 +35,10 @@ const Button = styled.button<{
   }
 
   :disabled {
-    background: #666de3;
+    background: rgba(102, 109, 227, 0.4);
+    color: #e3e3ff;
     cursor: not-allowed;
-    opacity: 0.4;
+    //opacity: 0.4;
   }
 
   @media (min-width: 768px) {

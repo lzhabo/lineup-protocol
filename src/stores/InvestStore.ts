@@ -3,9 +3,9 @@ import { makeAutoObservable } from "mobx";
 import { Contract } from "@ethersproject/contracts";
 import moneyBoxAbi from "@src/constants/moneyBoxAbi.json";
 
-export const investBoxAddress = "0xB69ae48A6B55a7Ad4D2421B9ed8fA10E645EC3e6";
-const tokenAddress = "0x651fe7a1c87CF429B3F6AF4becB5bCCf712F85EF";
-
+export const investBoxAddress = "0x21C38B25Df2553CeFA5edEcBDFfa6E868f7d563B";
+export const tokenAddress = "0x155e5a920f4d2d18F942FF46022f959148cEA378";
+export const lnpAddress = "0x98932eb833C20e6f85469af8F2Cc7215353C7F5A";
 interface ILock {
   basePercent: string;
   lockPeriod: string;

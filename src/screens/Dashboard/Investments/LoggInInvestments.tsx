@@ -32,7 +32,7 @@ const LoggInInvestments: React.FC<IProps> = () => {
   const vm = useDashboardVM();
   return (
     <Root>
-      {vm.boxes.length === 1 ? (
+      {vm.activeBoxes.length === 0 ? (
         <NotificationCard padding={28}>
           <NoResult />
           <SizedBox height={8} />
@@ -43,9 +43,7 @@ const LoggInInvestments: React.FC<IProps> = () => {
           </Text>
         </NotificationCard>
       ) : (
-        Array.from({ length: 3 }).map((_, i) => (
-          <DepositCard boxId={i.toString()} key={i} />
-        ))
+        vm.activeBoxes.map((box, key) => <DepositCard box={box} key={key} />)
       )}
       <Link to={ROUTES.INVEST}>
         <Button fixed>

@@ -17,3 +17,23 @@ const Loading: React.FC<IProps> = ({ ...rest }) => {
   );
 };
 export default Loading;
+
+// import React from "react";
+// import "./loading.style.css";
+//
+// const Loading: React.FC = () => (
+//   <div className="loadingio-spinner-ellipsis-obiarpb7lps">
+//     <div className="ldio-r1kmbpdgec">
+//       <div />
+//       <div />
+//       <div />
+//       <div />
+//       <div />
+//     </div>
+//   </div>
+// );
+// export default Loading;
+
+/*
+
+* */

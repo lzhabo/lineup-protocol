@@ -45,8 +45,8 @@ class InvestCardDaysVm {
   }
 
   deposit = async () => {
-    const { provider, signer, address } = this.rootStore.accountStore;
-    if (signer == null || address == null || provider == null) return;
+    const { signer, address } = this.rootStore.accountStore;
+    if (signer == null || address == null) return;
     this.setLoading(true);
     try {
       const { token: tokenAddress, contract: boxAddress } = this.lock!;
@@ -57,7 +57,8 @@ class InvestCardDaysVm {
         const res = await tok.approve(boxAddress, this.amount.toString());
         await res.wait();
       }
-      await contr.invest(this.amount.toString(), this.lock?.id);
+      const tx = await contr.invest(this.amount.toString(), this.lock?.id);
+      await tx.wait();
       await this.rootStore.accountStore.syncBalances();
       this.setNotificationParams(
         buildSuccessInvestDialogParams({
@@ -106,7 +107,8 @@ class InvestCardDaysVm {
       this.lock == null ||
       this.balance == null ||
       this.amount.eq(0) ||
-      this.amount.gt(this.balance?.amount ?? BN.ZERO)
+      this.amount.gt(this.balance?.amount ?? BN.ZERO) ||
+      this.loading
     );
   }
 }

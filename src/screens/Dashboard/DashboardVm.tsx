@@ -1,11 +1,14 @@
 import React, { useMemo } from "react";
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, when } from "mobx";
 import { RootStore, useStores } from "@stores";
 import { useVM } from "@src/utils/useVm";
 import BN from "@src/utils/BN";
 import { Contract } from "@ethersproject/contracts";
-import { investBoxAddress } from "@stores/InvestStore";
+import { investBoxAddress, lnpAddress } from "@stores/InvestStore";
 import moneyBoxAbi from "@src/constants/moneyBoxAbi.json";
+import tokens from "@src/constants/tokens.json";
+import tokenAbi from "@src/constants/erc20Abi.json";
+import { toast } from "react-toastify";
 
 const ctx = React.createContext<DashboardVm | null>(null);
 
@@ -15,8 +18,20 @@ export const DashboardVMProvider: React.FC = ({ children }) => {
   return <ctx.Provider value={store}>{children}</ctx.Provider>;
 };
 
-interface IBox {
+export enum BOX_STATUS {
+  DEFAULT,
+  ONGOING,
+  CLAIMED,
+  REVERTED,
+}
+
+export interface IBox {
   id: string;
+  investedAmount: BN;
+  lockId: string;
+  lockedUntil: BN;
+  status: BOX_STATUS;
+  token: string;
 }
 
 export const useDashboardVM = () => useVM(ctx);
@@ -25,60 +40,115 @@ class DashboardVm {
   public rootStore: RootStore;
 
   loading: boolean = false;
-  private _setLoading = (l: boolean) => (this.loading = l);
+  private setLoading = (l: boolean) => (this.loading = l);
 
   boxes: IBox[] = [];
   private setBoxes = (boxes: IBox[]) => (this.boxes = boxes);
 
   totalProfit: BN | null = null;
   totalLocked: BN | null = null;
-
-  get totalValue() {
-    return this.totalProfit && this.totalLocked
-      ? this.totalProfit.plus(this.totalLocked)
-      : BN.ZERO;
-  }
+  totalValue: BN | null = null;
 
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
-    this.sync().catch();
+    when(
+      () =>
+        this.rootStore.accountStore.address != null &&
+        this.rootStore.accountStore.provider != null &&
+        this.rootStore.investStore.locks != null &&
+        this.rootStore.investStore.locks.length > 0,
+      this.sync
+    );
+    setInterval(() => this.sync(), 10000);
   }
 
-  //todo
+  get activeBoxes() {
+    return this.boxes.filter(({ status }) => status === BOX_STATUS.ONGOING);
+  }
+
   sync = async () => {
     const { provider, address } = this.rootStore.accountStore;
-    const locksIds = this.rootStore.investStore.locks?.map(({ id }) => id);
-    if (provider == null || address == null || locksIds == null) return;
+    const locks = this.rootStore.investStore.locks;
+    if (provider == null || address == null || locks == null) return;
     const contr = new Contract(investBoxAddress, moneyBoxAbi, provider);
-    const boxIds: string[] = await contr.getBoxList(address);
+    const boxIds: BN[] = await contr.userOwned(address);
     const boxes: IBox[] = await Promise.all(
-      boxIds.map(async (id) => contr.getBoxData(id, address))
+      boxIds.map(async (id) => {
+        const box = await contr.getBoxData(address, id);
+        return {
+          ...box,
+          investedAmount: new BN(box.investedAmount.toString()),
+          lockedUntil: new BN(box.lockedUntil.toString()),
+          id: id.toString(),
+        };
+      })
     );
     this.setBoxes(boxes);
 
-    this.totalProfit = BN.ZERO;
-    this.totalLocked = BN.ZERO;
+    const tokenContract = new Contract(lnpAddress, tokenAbi, provider);
+    const token = tokens.find(({ address }) => address === lnpAddress);
+    const totalLocked = await tokenContract.totalSupply();
+    this.totalLocked = BN.formatUnits(totalLocked.toString(), token!.decimals);
+
+    let totalProfit = BN.ZERO;
+    let totalValue = BN.ZERO;
+
+    boxes.forEach(({ lockId, investedAmount: a }) => {
+      const lock = locks.find(({ id }) => id === lockId);
+      const token = tokens.find(({ address }) => address === lock?.token);
+
+      const amount = BN.formatUnits(new BN(a.toString()), token?.decimals);
+      const profit = amount.times((lock?.basePercent ?? 0) / 100);
+
+      totalProfit = totalProfit.plus(profit);
+      totalValue = totalValue.plus(profit).plus(amount);
+    });
+
+    this.totalProfit = totalProfit;
+    this.totalValue = totalValue;
   };
 
   reinvest = async (boxId: string) => {
     const box = this.boxes.find((box) => box.id === boxId);
-    if (box == null) return;
-    const { signer } = this.rootStore.accountStore;
-    if (signer == null) return;
-    const contr = new Contract(investBoxAddress, moneyBoxAbi, signer);
-    await contr.reinvest(boxId);
-    await this.sync().catch();
-    await this.rootStore.accountStore.syncBalances();
+    const { signer, address } = this.rootStore.accountStore;
+    if (box == null || signer == null || address == null) return;
+    this.setLoading(true);
+    try {
+      const contr = new Contract(investBoxAddress, moneyBoxAbi, signer);
+      const tx = await contr.reinvest(boxId);
+      await tx.wait();
+      await this.sync();
+      await this.rootStore.accountStore.syncBalances();
+    } catch (e: any) {
+      toast(e.message ?? e.toString(), { type: "error" });
+    }
+    this.setLoading(false);
   };
+
   withdraw = async (boxId: string) => {
     const box = this.boxes.find((box) => box.id === boxId);
-    if (box == null) return;
     const { signer, address } = this.rootStore.accountStore;
-    if (signer == null || address == null) return;
-    const contr = new Contract(investBoxAddress, moneyBoxAbi, signer);
-    await contr.claim(boxId, address);
-    await this.sync().catch();
-    await this.rootStore.accountStore.syncBalances();
+    if (box == null || signer == null || address == null) return;
+    this.setLoading(true);
+    try {
+      const contr = new Contract(investBoxAddress, moneyBoxAbi, signer);
+      const tok = new Contract(lnpAddress, tokenAbi, signer);
+      const allowance = await tok.allowance(address, investBoxAddress);
+      if (box.investedAmount.gt(allowance.toString())) {
+        const res = await tok.approve(
+          investBoxAddress,
+          box.investedAmount.toString()
+        );
+        await res.wait();
+      }
+      const tx = await contr.claim(boxId, address);
+      await tx.wait();
+      await this.sync();
+      await this.rootStore.accountStore.syncBalances();
+    } catch (e: any) {
+      toast(e.message ?? e.toString(), { type: "error" });
+    }
+    this.setLoading(false);
   };
 }

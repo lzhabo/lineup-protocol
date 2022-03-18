@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import { Column, Row } from "@components/Flex";
@@ -6,10 +6,18 @@ import Divider from "@components/Divider";
 import Card from "@components/Card";
 import styled from "@emotion/styled";
 import { observer } from "mobx-react-lite";
-import { useDashboardVM } from "@screens/Dashboard/DashboardVm";
-
+import {
+  BOX_STATUS,
+  IBox,
+  useDashboardVM,
+} from "@screens/Dashboard/DashboardVm";
+import BN from "@src/utils/BN";
+import tokens from "@src/constants/tokens.json";
+import { useStores } from "@stores";
+import Loading from "@components/Loading";
+import dayjs from "dayjs";
 interface IProps {
-  boxId: string;
+  box: IBox;
 }
 
 const Status = styled.div<{ locked?: boolean }>`
@@ -75,25 +83,42 @@ const TextButton = styled.button`
   }
 `;
 
-const DepositCard: React.FC<IProps> = ({ boxId }) => {
+const DepositCard: React.FC<IProps> = ({ box }) => {
   const vm = useDashboardVM();
-  const data = [
-    { name: "Locked", value: "$99,999.99" },
-    { name: "APY", value: "14.88%" },
-    { name: "Profit", value: "$999.99" },
-    { name: "Unlock", value: "21/04/22, 13:37" },
-  ];
+  const { investStore } = useStores();
+  const lock = investStore.locks?.find(({ id }) => id === box.lockId);
+  const token = tokens.find(({ address }) => address === lock?.token);
+
+  const locked = BN.formatUnits(box.investedAmount.toString(), token?.decimals);
+  const profit = BN.formatUnits(
+    box.investedAmount.times((lock?.basePercent ?? 0) / 100),
+    token?.decimals
+  );
+  const unlock = dayjs.unix(+box.lockedUntil.toString());
+  const idLocked = dayjs().isBefore(unlock);
+  const data = useMemo(
+    () => [
+      { name: "Locked", value: `${locked} ${token?.symbol}` },
+      { name: "APY", value: `${lock?.basePercent}%` },
+      { name: "Profit", value: `${profit} ${token?.symbol}` },
+      { name: "Unlock", value: unlock.format("DD/MM/YY, hh:mm") },
+    ],
+    [lock, locked, profit, token?.symbol, unlock]
+  );
   const actions = [
-    { title: "Deposit again", onClick: () => vm.reinvest(boxId) },
-    { title: "Withdraw", onClick: () => vm.withdraw(boxId) },
-    { title: "Emergency unlock", onClick: () => null, disabled: true },
+    { title: "Deposit again", onClick: () => vm.reinvest(box.id) },
+    { title: "Withdraw", onClick: () => vm.withdraw(box.id) },
+    // { title: "Emergency unlock", onClick: () => null, disabled: true },
   ];
+  if (lock == null || token == null) return <Loading />;
   return (
     <Card style={{ marginBottom: 16 }}>
       <Row alignItems="center">
-        <Text fitContent>7-day Deposit</Text>
+        <Text fitContent>{lock.lockPeriodDays}-day Deposit</Text>
         <SizedBox width={16} />
-        <Status locked>Unlocked</Status>
+        {box.status === BOX_STATUS.ONGOING && (
+          <Status locked={idLocked}> {idLocked ? "Locked" : "Unlocked"}</Status>
+        )}
       </Row>
       <SizedBox height={24} />
       <Info>
@@ -110,11 +135,18 @@ const DepositCard: React.FC<IProps> = ({ boxId }) => {
       <Divider />
       <SizedBox height={14} />
       <ActionsWrapper>
-        {actions.map(({ title, ...rest }, i) => (
-          <TextButton key={i} {...rest}>
-            {title}
+        {!vm.loading ? (
+          actions.map(({ title, ...rest }, i) => (
+            <TextButton key={i} {...rest}>
+              {title}
+            </TextButton>
+          ))
+        ) : (
+          <TextButton>
+            {" "}
+            <Loading style={{ color: "#fff" }} />
           </TextButton>
-        ))}
+        )}
       </ActionsWrapper>
     </Card>
   );

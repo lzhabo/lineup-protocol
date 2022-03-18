@@ -74,7 +74,7 @@ const AmountToLock: React.FC<IProps> = () => {
         <Button
           style={{ borderRadius: 26 }}
           fixed
-          onClick={vm.deposit}
+          onClick={!vm.disabled ? vm.deposit : undefined}
           disabled={vm.disabled}
         >
           {vm.loading ? (

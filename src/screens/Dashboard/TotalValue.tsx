@@ -55,12 +55,13 @@ const TotalValueTitle = styled.div`
 `;
 const TotalValue: React.FC<IProps> = () => {
   const vm = useDashboardVM();
+
   return (
     <Root>
       <Top>
         <Text size="medium">Total Value</Text>
         <SizedBox height={8} />
-        <TotalValueTitle>${vm.totalValue.toFormat(2)}</TotalValueTitle>
+        <TotalValueTitle>${vm.totalValue?.toFormat(2)}</TotalValueTitle>
       </Top>
       <SizedBox height={2} />
       <Bottom>
