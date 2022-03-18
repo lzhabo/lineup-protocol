@@ -389,35 +389,6 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "basePercent",
-        "type": "uint256"
-      }
-    ],
-    "name": "getPercentValues",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "transferAmount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "txFee",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
         "name": "investAmount",
         "type": "uint256"
       },

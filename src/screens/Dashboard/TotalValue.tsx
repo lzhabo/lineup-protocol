@@ -6,6 +6,7 @@ import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import { Column } from "@src/components/Flex";
 import { useDashboardVM } from "@screens/Dashboard/DashboardVm";
+import BN from "@src/utils/BN";
 
 interface IProps {}
 
@@ -63,13 +64,22 @@ const TotalValue: React.FC<IProps> = () => {
       </Top>
       <SizedBox height={2} />
       <Bottom>
-        <Column crossAxisSize="max">
+        <Column
+          crossAxisSize="max"
+          style={{ marginRight: 40 }}
+          justifyContent="space-between"
+          mainAxisSize="stretch"
+        >
           <Text type="secondary">Total value locked</Text>
-          <Text size="medium">${vm.totalLocked?.toFormat(2)}</Text>
+          <Text size="medium">${(vm.totalLocked ?? BN.ZERO).toFormat(2)}</Text>
         </Column>
-        <Column crossAxisSize="max">
+        <Column
+          crossAxisSize="max"
+          justifyContent="space-between"
+          mainAxisSize="stretch"
+        >
           <Text type="secondary">Total profit</Text>
-          <Text size="medium">${vm.totalProfit?.toFormat(2)}</Text>
+          <Text size="medium">${(vm.totalProfit ?? BN.ZERO).toFormat(2)}</Text>
         </Column>
       </Bottom>
     </Root>

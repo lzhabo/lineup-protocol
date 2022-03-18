@@ -48,7 +48,7 @@ const DialogNotification: React.FC<IDialogNotificationProps> = ({
 }) => {
   return (
     <Dialog {...rest}>
-      <Root style={{}} alignItems="center" crossAxisSize="max">
+      <Root alignItems="center" crossAxisSize="max">
         <SizedBox height={32} />
         {type === "success" && <Success />}
 

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "@src/constants";
 import { observer } from "mobx-react-lite";
 import DepositCard from "@screens/Dashboard/Investments/DepositCard";
+import { useDashboardVM } from "@screens/Dashboard/DashboardVm";
 
 interface IProps {}
 
@@ -18,21 +19,21 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const NotificationCard = styled(Card)`
+const NotificationCard = styled(Card)<{ padding?: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin-bottom: 16px;
-  padding: 38px !important;
+  padding: ${({ padding }) => padding ?? 38}px !important;
 `;
 
 const LoggInInvestments: React.FC<IProps> = () => {
-  const investment = [1];
+  const vm = useDashboardVM();
   return (
     <Root>
-      {investment.length === 0 ? (
-        <NotificationCard>
+      {vm.boxes.length === 1 ? (
+        <NotificationCard padding={28}>
           <NoResult />
           <SizedBox height={8} />
           <Text type="secondary">
@@ -42,7 +43,9 @@ const LoggInInvestments: React.FC<IProps> = () => {
           </Text>
         </NotificationCard>
       ) : (
-        Array.from({ length: 3 }).map((_, i) => <DepositCard key={i} />)
+        Array.from({ length: 3 }).map((_, i) => (
+          <DepositCard boxId={i.toString()} key={i} />
+        ))
       )}
       <Link to={ROUTES.INVEST}>
         <Button fixed>

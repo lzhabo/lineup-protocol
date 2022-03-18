@@ -18,7 +18,7 @@ const Investments: React.FC<IProps> = () => {
   const { accountStore } = useStores();
   return (
     <Root>
-      <Text weight={600} size="big">
+      <Text weight={600} size="title">
         My Investments
       </Text>
       <SizedBox height={16} />

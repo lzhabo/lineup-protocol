@@ -8,7 +8,10 @@ import TokenInput from "@components/TokenInput";
 import BN from "@src/utils/BN";
 import { observer } from "mobx-react-lite";
 import { useInvestCardVM } from "@screens/InvestCard/InvestCardVm";
+import Loading from "@components/Loading";
+import dayjs from "dayjs";
 import DialogNotification from "@components/Dialog/DialogNotification";
+import { useStores } from "@stores";
 
 interface IProps {}
 
@@ -30,7 +33,10 @@ const LockDetails = styled(Column)`
 `;
 const AmountToLock: React.FC<IProps> = () => {
   const vm = useInvestCardVM();
-
+  const { accountStore } = useStores();
+  const unlock = vm.lock?.lockPeriod
+    ? dayjs().add(vm.lock?.lockPeriod, "seconds").format("DD/MM/YY, hh:mm")
+    : "–";
   return (
     <Root>
       <TokenInput
@@ -45,16 +51,43 @@ const AmountToLock: React.FC<IProps> = () => {
         <LockInfo name="APY" value={`${vm.lock?.basePercent ?? 0}%`} />
         <LockInfo
           name="Profit"
-          value={`~ ${vm.profitString} ${vm.balance?.symbol}` ?? "–"}
+          value={
+            vm.balance?.symbol
+              ? `~ ${vm.profitString} ${vm.balance?.symbol}`
+              : "–"
+          }
         />
-        <LockInfo name="Unlock" value="21/04/22, 13:37" borderless />
+        <LockInfo name="Unlock" value={unlock} borderless />
       </LockDetails>
       <SizedBox height={24} />
-      <Button fixed onClick={vm.deposit} disabled={vm.disabled}>
-        {vm.amount.eq(0)
-          ? "Enter amount to lock"
-          : `Lock ${vm.balanceString} ${vm.balance?.symbol}`}
-      </Button>
+      {accountStore.address == null && (
+        <Button
+          style={{ borderRadius: 26 }}
+          fixed
+          onClick={() => accountStore.setLoginModalOpened(true)}
+          disabled={!accountStore.installed}
+        >
+          Connect wallet
+        </Button>
+      )}
+      {accountStore.address != null && (
+        <Button
+          style={{ borderRadius: 26 }}
+          fixed
+          onClick={vm.deposit}
+          disabled={vm.disabled}
+        >
+          {vm.loading ? (
+            <Loading />
+          ) : vm.amount.eq(0) ? (
+            "Enter amount to lock"
+          ) : vm.balance != null && vm.balance.amount.gte(vm.amount) ? (
+            `Lock ${vm.balanceString} ${vm.balance?.symbol}`
+          ) : (
+            "Insufficient balance"
+          )}
+        </Button>
+      )}
       <DialogNotification
         onClose={() => vm.setNotificationParams(null)}
         title={vm.notificationParams?.title ?? ""}

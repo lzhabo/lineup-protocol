@@ -5,8 +5,12 @@ import { Column, Row } from "@components/Flex";
 import Divider from "@components/Divider";
 import Card from "@components/Card";
 import styled from "@emotion/styled";
+import { observer } from "mobx-react-lite";
+import { useDashboardVM } from "@screens/Dashboard/DashboardVm";
 
-interface IProps {}
+interface IProps {
+  boxId: string;
+}
 
 const Status = styled.div<{ locked?: boolean }>`
   font-weight: 500;
@@ -25,7 +29,54 @@ const Info = styled.div`
     display: flex;
   }
 `;
-const DepositCard: React.FC<IProps> = () => {
+
+const ActionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  & > * {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    & > * {
+      margin-bottom: 0;
+      width: fit-content;
+      margin-right: 24px;
+    }
+    & > :last-child {
+      margin-bottom: 0;
+    }
+  }
+`;
+
+const TextButton = styled.button`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #767eff;
+  transition: 0.4s;
+  cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  :hover {
+    color: #fff;
+  }
+  :disabled {
+    color: #747489;
+    cursor: not-allowed;
+  }
+`;
+
+const DepositCard: React.FC<IProps> = ({ boxId }) => {
+  const vm = useDashboardVM();
   const data = [
     { name: "Locked", value: "$99,999.99" },
     { name: "APY", value: "14.88%" },
@@ -33,9 +84,9 @@ const DepositCard: React.FC<IProps> = () => {
     { name: "Unlock", value: "21/04/22, 13:37" },
   ];
   const actions = [
-    { title: "Deposit again", onClick: () => null },
-    { title: "Withdraw", onClick: () => null },
-    { title: "Emergency unlock", onClick: () => null },
+    { title: "Deposit again", onClick: () => vm.reinvest(boxId) },
+    { title: "Withdraw", onClick: () => vm.withdraw(boxId) },
+    { title: "Emergency unlock", onClick: () => null, disabled: true },
   ];
   return (
     <Card style={{ marginBottom: 16 }}>
@@ -57,21 +108,15 @@ const DepositCard: React.FC<IProps> = () => {
       </Info>
       <SizedBox height={24} />
       <Divider />
-      <SizedBox height={24} />
-      <Row>
-        {actions.map(({ title, onClick }, i) => (
-          <Text
-            fitContent
-            type="purple"
-            onClick={onClick}
-            style={{ marginRight: 24 }}
-            key={i}
-          >
+      <SizedBox height={14} />
+      <ActionsWrapper>
+        {actions.map(({ title, ...rest }, i) => (
+          <TextButton key={i} {...rest}>
             {title}
-          </Text>
+          </TextButton>
         ))}
-      </Row>
+      </ActionsWrapper>
     </Card>
   );
 };
-export default DepositCard;
+export default observer(DepositCard);

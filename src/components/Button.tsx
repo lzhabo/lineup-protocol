@@ -15,7 +15,6 @@ const Button = styled.button<{
   align-items: center;
   box-sizing: border-box;
   background: ${({ kind }) => (kind === "secondary" ? "#1F1E25" : "#666DE3")};
-  border-radius: 26px;
   box-shadow: none;
   font-weight: 500;
   font-size: 16px;
@@ -27,7 +26,8 @@ const Button = styled.button<{
   width: ${({ fixed }) => (fixed ? "100%" : "fit-content")};
 
   padding: 0 24px;
-  height: 52px;
+  border-radius: ${({ size }) => (size === "medium" ? 20 : 26)}px;
+  height: ${({ size }) => (size === "medium" ? 40 : 52)}px;
 
   :hover {
     background: ${({ kind }) => (kind === "secondary" ? "#535362" : "#767EFF")};
@@ -41,7 +41,7 @@ const Button = styled.button<{
   }
 
   @media (min-width: 768px) {
-    border-radius: 16px;
+    border-radius: ${({ size }) => (size === "medium" ? 20 : 16)}px;
   }
 `;
 

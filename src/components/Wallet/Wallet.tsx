@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
+import React from "react";
 import { useStores } from "@stores";
 import { observer } from "mobx-react-lite";
 import LoginModal from "./LoginModal";
@@ -16,19 +16,21 @@ const Root = styled.div`
 
 const Wallet: React.FC<IProps> = () => {
   const { accountStore } = useStores();
-  const [loginModalOpened, setLoginModalOpened] = useState(false);
   return (
     <Root>
       {accountStore.address != null ? (
         <LoggedInAccountInfo address={accountStore.address} />
       ) : (
-        <Button onClick={() => setLoginModalOpened(true)}>
+        <Button
+          size="medium"
+          onClick={() => accountStore.setLoginModalOpened(true)}
+        >
           Connect wallet
         </Button>
       )}
       <LoginModal
-        visible={loginModalOpened}
-        onClose={() => setLoginModalOpened(false)}
+        visible={accountStore.loginModalOpened}
+        onClose={() => accountStore.setLoginModalOpened(false)}
       />
     </Root>
   );

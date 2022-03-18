@@ -5,6 +5,8 @@ import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import Button from "@components/Button";
 import { Lock } from "@stores/InvestStore";
+import LockInfo from "@screens/InvestCard/LockInfo";
+import dayjs from "dayjs";
 
 interface IProps {
   lock: Lock;
@@ -17,6 +19,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   justify-self: center;
+  flex: 1;
 `;
 
 const Top = styled.div`
@@ -44,6 +47,9 @@ const Img = styled.img`
   width: 56px;
 `;
 const InvestItem: React.FC<IProps> = ({ description, lock, pic, onClick }) => {
+  const unlock = dayjs()
+    .add(lock?.lockPeriod, "seconds")
+    .format("DD/MM/YY, hh:mm");
   return (
     <Root>
       <Top>
@@ -55,9 +61,13 @@ const InvestItem: React.FC<IProps> = ({ description, lock, pic, onClick }) => {
       </Top>
       <SizedBox height={2} />
       <Bottom>
-        <Text type="secondary">{description}</Text>
+        <Column crossAxisSize="max">
+          <LockInfo name="Network" value="BNB Smart Chain" />
+          <LockInfo name="Asset" value="USDT" />
+          <LockInfo name="Unlock" value={unlock} borderless />
+        </Column>
         <SizedBox height={24} />
-        <Button onClick={onClick} fixed>
+        <Button size="medium" onClick={onClick} fixed>
           Invest
         </Button>
       </Bottom>

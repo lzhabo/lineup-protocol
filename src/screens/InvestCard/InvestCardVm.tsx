@@ -10,8 +10,12 @@ import BN from "@src/utils/BN";
 import { Contract } from "@ethersproject/contracts";
 import abi from "@src/constants/moneyBoxAbi.json";
 import tokenAbi from "@src/constants/erc20Abi.json";
+import tokens from "@src/constants/tokens.json";
 import { toast } from "react-toastify";
-import { IDialogNotificationProps } from "@components/Dialog/DialogNotification";
+import {
+  buildSuccessInvestDialogParams,
+  IDialogNotificationProps,
+} from "@components/Dialog/DialogNotification";
 
 const ctx = React.createContext<InvestCardDaysVm | null>(null);
 
@@ -55,15 +59,29 @@ class InvestCardDaysVm {
       }
       await contr.invest(this.amount.toString(), this.lock?.id);
       await this.rootStore.accountStore.syncBalances();
+      this.setNotificationParams(
+        buildSuccessInvestDialogParams({
+          amount: BN.formatUnits(this.amount, this.balance?.decimals)
+            .toFormat(0)
+            .concat(` ${this.balance?.symbol}`),
+        })
+      );
+      this.setAmount(BN.ZERO);
     } catch (e: any) {
       toast(e.message ?? e.toString(), { type: "error" });
     }
+    this.setLoading(false);
   };
 
   get balance(): TBalance | null {
     const { balances } = this.rootStore.accountStore;
     if (balances.length === 0 || this.lock == null) return null;
-    return balances.find(({ address }) => address === this.lock!.token) ?? null;
+    const token = tokens.find(({ address }) => address === this.lock!.token);
+    const balance = balances.find(
+      ({ address }) => address === this.lock!.token
+    );
+    if (token == null) return null;
+    return balance != null ? balance : { ...token, amount: BN.ZERO };
   }
 
   get lock(): Lock | null {

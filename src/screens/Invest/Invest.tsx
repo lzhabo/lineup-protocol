@@ -22,6 +22,7 @@ const Root = styled.div`
   box-sizing: border-box;
   padding: 0 16px;
   max-width: calc(1160px + 32px);
+  width: 100%;
   text-align: left;
 
   @media (min-width: 768px) {
@@ -33,6 +34,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
   & > * {
     //max-width: 330px;
     margin: 0 0 16px 0;

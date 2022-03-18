@@ -5,8 +5,7 @@ import Text from "@components/Text";
 import { ReactComponent as Wallet } from "@src/assets/images/wallet.svg";
 import SizedBox from "@components/SizedBox";
 import Button from "@components/Button";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "@src/constants";
+import { useStores } from "@stores";
 
 interface IProps {}
 
@@ -16,17 +15,23 @@ const Root = styled.div`
 `;
 
 const LoggOutInvestments: React.FC<IProps> = () => {
-  const navigate = useNavigate();
+  const { accountStore } = useStores();
   return (
     <Root>
-      <Card justifyContent="center" alignItems="center">
+      <Card
+        justifyContent="center"
+        alignItems="center"
+        style={{ padding: "38px 0px" }}
+      >
         <Wallet style={{ height: 56, width: 56 }} />
         <SizedBox height={8} />
-        <Text fitContent>Connect your wallet to see deposits</Text>
+        <Text type="secondary" fitContent>
+          Connect your wallet to see deposits
+        </Text>
       </Card>
       <SizedBox height={16} />
-      <Button fixed onClick={() => navigate(ROUTES.INVEST)}>
-        Invest
+      <Button fixed onClick={() => accountStore.setLoginModalOpened(true)}>
+        Connect Wallet
       </Button>
     </Root>
   );

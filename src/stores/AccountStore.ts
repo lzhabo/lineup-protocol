@@ -79,6 +79,10 @@ class AccountStore {
   installed = false;
   private setInstalled = (v: boolean) => (this.installed = v);
 
+  //is metamask installed
+  loginModalOpened = false;
+  setLoginModalOpened = (v: boolean) => (this.loginModalOpened = v);
+
   //ethers provider
   provider: Web3Provider | null = null;
   private setProvider = (provider: Web3Provider) => (this.provider = provider);
@@ -150,6 +154,7 @@ class AccountStore {
     if (!Object.values(CHAIN_ID).includes(network.chainId)) {
       await this.switchChain(CHAIN_ID.BSC_TESTNET);
     }
+    this.setLoginModalOpened(false);
   };
 
   disconnect = () => {};
