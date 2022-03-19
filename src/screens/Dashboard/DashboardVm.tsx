@@ -46,9 +46,13 @@ class DashboardVm {
   private setBoxes = (boxes: IBox[]) => (this.boxes = boxes);
 
   totalProfit: BN | null = null;
+  private setTotalProfit = (totalProfit: BN) =>
+    (this.totalProfit = totalProfit);
   totalLocked: BN | null = null;
+  private setTotalLocked = (totalLocked: BN) =>
+    (this.totalLocked = totalLocked);
   totalValue: BN | null = null;
-
+  private setTotalValue = (totalValue: BN) => (this.totalValue = totalValue);
   constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeAutoObservable(this);
@@ -89,7 +93,6 @@ class DashboardVm {
     const tokenContract = new Contract(lnpAddress, tokenAbi, provider);
     const token = tokens.find(({ address }) => address === lnpAddress);
     const totalLocked = await tokenContract.totalSupply();
-    this.totalLocked = BN.formatUnits(totalLocked.toString(), token!.decimals);
 
     let totalProfit = BN.ZERO;
     let totalValue = BN.ZERO;
@@ -105,8 +108,11 @@ class DashboardVm {
       totalValue = totalValue.plus(profit).plus(amount);
     });
 
-    this.totalProfit = totalProfit;
-    this.totalValue = totalValue;
+    this.setTotalLocked(
+      BN.formatUnits(totalLocked.toString(), token!.decimals)
+    );
+    this.setTotalProfit(totalProfit);
+    this.setTotalValue(totalValue);
   };
 
   reinvest = async (boxId: string) => {

@@ -8,6 +8,12 @@ import Dashboard from "@screens/Dashboard";
 import Footer from "@components/Footer";
 import InvestCard from "@screens/InvestCard/InvestCard";
 import { AnimatePresence } from "framer-motion";
+import { observer } from "mobx-react-lite";
+import { useStores } from "@stores";
+import { Column } from "@components/Flex";
+import Button from "@components/Button";
+import Text from "@components/Text";
+import SizedBox from "@components/SizedBox";
 
 interface IProps {}
 
@@ -34,17 +40,43 @@ const Content = styled.div`
 
 const App: React.FunctionComponent<IProps> = () => {
   const location = useLocation();
+  const { accountStore } = useStores();
   return (
     <Root>
       <Header />
       <Content>
         <AnimatePresence exitBeforeEnter>
-          <Routes key={location.pathname} location={location}>
-            <Route path={ROUTES.INVEST} element={<Invest />} />
-            <Route path={ROUTES.INVEST_CARD} element={<InvestCard />} />
-            <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
-            <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} />} />
-          </Routes>
+          {!accountStore.chainIdCorrect && accountStore.address != null ? (
+            <Column
+              style={{ textAlign: "center" }}
+              alignItems="center"
+              justifyContent="center"
+              mainAxisSize="stretch"
+              crossAxisSize="max"
+            >
+              <Text size="title">
+                You need to change
+                <br /> network to continue
+              </Text>
+              <SizedBox height={48} />
+              <Button
+                onClick={() =>
+                  accountStore
+                    .switchToDefaultChain()
+                    .then(() => window.location.reload())
+                }
+              >
+                Change network
+              </Button>
+            </Column>
+          ) : (
+            <Routes key={location.pathname} location={location}>
+              <Route path={ROUTES.INVEST} element={<Invest />} />
+              <Route path={ROUTES.INVEST_CARD} element={<InvestCard />} />
+              <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
+              <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} />} />
+            </Routes>
+          )}
         </AnimatePresence>
       </Content>
       <Footer />
@@ -52,4 +84,4 @@ const App: React.FunctionComponent<IProps> = () => {
   );
 };
 
-export default App;
+export default observer(App);

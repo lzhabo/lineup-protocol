@@ -10,7 +10,6 @@ import dayjs from "dayjs";
 
 interface IProps {
   lock: Lock;
-  description: string;
   pic: string;
   onClick: () => void;
 }
@@ -46,7 +45,7 @@ const Img = styled.img`
   height: 56px;
   width: 56px;
 `;
-const InvestItem: React.FC<IProps> = ({ description, lock, pic, onClick }) => {
+const InvestItem: React.FC<IProps> = ({ lock, pic, onClick }) => {
   const unlock = dayjs()
     .add(lock?.lockPeriod, "seconds")
     .format("DD/MM/YY, hh:mm");

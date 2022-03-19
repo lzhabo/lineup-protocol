@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
-import { Observer, useObserver } from "mobx-react-lite";
+import { Observer } from "mobx-react-lite";
 import Layout from "@components/Layout";
 import { InvestVMProvider } from "@screens/Invest/InvestVm";
 import Text from "@components/Text";
@@ -36,7 +36,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   & > * {
-    //max-width: 330px;
     margin: 0 0 16px 0;
   }
   :last-child {
@@ -56,50 +55,44 @@ const Container = styled.div`
 
 const InvestImpl: React.FC = () => {
   const { investStore } = useStores();
-  const locks = useObserver(() => investStore.locks);
-  const tariffs = locks && [
-    {
-      lock: locks[0],
-      pic: rocket1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
-    },
-    {
-      lock: locks[1],
-      pic: rocket2,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
-    },
-    {
-      lock: locks[2],
-      pic: rocket3,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pellentesque sit eget purus aliquet senectus et arcu.",
-    },
-  ];
   const navigate = useNavigate();
+  const handleLockClick = (id: string) =>
+    navigate(ROUTES.INVEST_CARD.replace(":id", id));
   return (
     <Layout>
       <Observer>
-        {() => (
-          <Root>
-            <GoBack link={ROUTES.DASHBOARD} text="Back to Dashboard" />
-            <SizedBox height={32} />
-            <Text size="title">Invest</Text>
-            <SizedBox height={16} />
-            <Container>
-              {tariffs?.map((t, index) => (
-                <InvestItem
-                  {...t}
-                  key={index + "invest"}
-                  onClick={() =>
-                    navigate(ROUTES.INVEST_CARD.replace(":id", t.lock.id))
-                  }
-                />
-              ))}
-            </Container>
-          </Root>
-        )}
+        {() => {
+          const locks = investStore.locks;
+          return (
+            <Root>
+              <GoBack link={ROUTES.DASHBOARD} text="Back to Dashboard" />
+              <SizedBox height={32} />
+              <Text size="title">Invest</Text>
+              <SizedBox height={16} />
+              <Container>
+                {locks && (
+                  <>
+                    <InvestItem
+                      lock={locks[0]}
+                      pic={rocket1}
+                      onClick={() => handleLockClick(locks[0].id)}
+                    />
+                    <InvestItem
+                      lock={locks[1]}
+                      pic={rocket2}
+                      onClick={() => handleLockClick(locks[1].id)}
+                    />
+                    <InvestItem
+                      lock={locks[2]}
+                      pic={rocket3}
+                      onClick={() => handleLockClick(locks[2].id)}
+                    />
+                  </>
+                )}
+              </Container>
+            </Root>
+          );
+        }}
       </Observer>
     </Layout>
   );

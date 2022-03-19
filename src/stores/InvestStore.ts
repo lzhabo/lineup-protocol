@@ -51,17 +51,25 @@ class InvestStore {
   }
 
   sync = async () => {
-    const provider = this.rootStore.accountStore.provider;
-    if (provider == null) return;
-    const contr = new Contract(investBoxAddress, moneyBoxAbi as any, provider);
-    const lockIds: string[] = await contr.getLockList();
-    const locks: Lock[] = await Promise.all(
-      lockIds.map(async (id) => {
-        const lock: ILock = await contr.getLockData(id);
-        return new Lock({ ...lock, id }, investBoxAddress, tokenAddress);
-      })
-    );
-    this.setLocks(locks.sort((a, b) => (a.lockPeriod < b.lockPeriod ? 1 : -1)));
+    try {
+      const provider = this.rootStore.accountStore.provider;
+      if (provider == null) return;
+      const contr = new Contract(
+        investBoxAddress,
+        moneyBoxAbi as any,
+        provider
+      );
+      const lockIds: string[] = await contr.getLockList();
+      const locks: Lock[] = await Promise.all(
+        lockIds.map(async (id) => {
+          const lock: ILock = await contr.getLockData(id);
+          return new Lock({ ...lock, id }, investBoxAddress, tokenAddress);
+        })
+      );
+      this.setLocks(
+        locks.sort((a, b) => (a.lockPeriod < b.lockPeriod ? 1 : -1))
+      );
+    } catch (e) {}
   };
 }
 export default InvestStore;

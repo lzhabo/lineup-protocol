@@ -11,7 +11,7 @@ import { ROUTES } from "@src/constants";
 import SizedBox from "@components/SizedBox";
 import AmountToLock from "./AmountToLock";
 import AnimatedPage from "@components/AnimatedPage";
-import { useObserver } from "mobx-react-lite";
+import { Observer } from "mobx-react-lite";
 
 const Root = styled.div`
   display: flex;
@@ -35,16 +35,19 @@ const Content = styled.div`
 
 const InvestCardImpl: React.FC = () => {
   const vm = useInvestCardVM();
-  const lock = useObserver(() => vm.lock);
   return (
     <Layout>
       <Root>
         <GoBack link={ROUTES.INVEST} text="Back to Invest" />
         <SizedBox height={32} />
         <Content>
-          <Text textAlign="center" size="title">
-            Invest to {lock?.lockPeriodDays}-day locking period
-          </Text>
+          <Observer>
+            {() => (
+              <Text textAlign="center" size="title">
+                Invest to {vm.lock?.lockPeriodDays}-day locking period
+              </Text>
+            )}
+          </Observer>
           <SizedBox height={32} />
           <AmountToLock />
         </Content>

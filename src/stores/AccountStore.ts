@@ -19,6 +19,8 @@ export enum CHAIN_ID {
   BSC_TESTNET = 97,
 }
 
+const DEFAULT_CHAIN_ID = CHAIN_ID.BSC_TESTNET;
+
 export const RPC_URLS = {
   [CHAIN_ID.BSC]: ["https://bsc-dataseed.binance.org/"],
   [CHAIN_ID.BSC_TESTNET]: ["https://bsc.testnet.eywa.fi"],
@@ -73,7 +75,11 @@ class AccountStore {
 
   //wallet address
   address: string | null = null;
-  private setAddress = (address: string) => (this.address = address);
+  private setAddress = (address: string | null) => (this.address = address);
+
+  //wallet chainId
+  chainId: CHAIN_ID | null = null;
+  private setChainId = (chainId: CHAIN_ID | null) => (this.chainId = chainId);
 
   //is metamask installed
   installed = false;
@@ -85,11 +91,12 @@ class AccountStore {
 
   //ethers provider
   provider: Web3Provider | null = null;
-  private setProvider = (provider: Web3Provider) => (this.provider = provider);
+  private setProvider = (provider: Web3Provider | null) =>
+    (this.provider = provider);
 
   //ethers signer
   signer: JsonRpcSigner | null = null;
-  private setSigner = (signer: JsonRpcSigner) => (this.signer = signer);
+  private setSigner = (signer: JsonRpcSigner | null) => (this.signer = signer);
 
   constructor(rootStore: RootStore, initState?: ISerializedAccountStore) {
     this.rootStore = rootStore;
@@ -97,7 +104,7 @@ class AccountStore {
     try {
       // A Web3Provider wraps a standard Web3 provider, which is
       // what MetaMask injects as window.ethereum into each page
-      const provider = new Web3Provider((window as any).ethereum);
+      const provider = new Web3Provider((window as any).ethereum, "any");
       this.setProvider(provider);
 
       //If there is some accounts connected we will login
@@ -116,25 +123,37 @@ class AccountStore {
     }
 
     setInterval(this.syncBalances, 10000);
+    this.provider!.on("network", async (network, oldNetwork) => {
+      if (oldNetwork) {
+        window.location.reload();
+      }
+    });
   }
 
   balances: TBalance[] = [];
   private setBalances = (balances: TBalance[]) => (this.balances = balances);
+
+  get chainIdCorrect() {
+    return this.chainId === DEFAULT_CHAIN_ID;
+  }
+
   syncBalances = async () => {
-    if (!this.installed || this.address == null || this.provider == null) {
-      return;
-    }
-    const balances = await Promise.all(
-      tokens.map(async (t) => {
-        const contr = new Contract(t.address, erc20Abi, this.provider!);
-        const amount = await contr.balanceOf(this.address);
-        return {
-          ...t,
-          amount: new BN(amount),
-        } as TBalance;
-      })
-    );
-    this.setBalances(balances);
+    try {
+      if (!this.installed || this.address == null || this.provider == null) {
+        return;
+      }
+      const balances = await Promise.all(
+        tokens.map(async (t) => {
+          const contr = new Contract(t.address, erc20Abi, this.provider!);
+          const amount = await contr.balanceOf(this.address);
+          return {
+            ...t,
+            amount: new BN(amount),
+          } as TBalance;
+        })
+      );
+      this.setBalances(balances);
+    } catch (e) {}
   };
 
   metamaskLogin = async () => {
@@ -151,13 +170,28 @@ class AccountStore {
 
     const network = await this.provider.getNetwork();
 
-    if (!Object.values(CHAIN_ID).includes(network.chainId)) {
-      await this.switchChain(CHAIN_ID.BSC_TESTNET);
+    if (network.chainId !== DEFAULT_CHAIN_ID) {
+      await this.switchToDefaultChain();
+    } else {
+      this.setChainId(DEFAULT_CHAIN_ID);
     }
     this.setLoginModalOpened(false);
   };
 
-  disconnect = () => {};
+  switchToDefaultChain = () =>
+    this.switchChain(DEFAULT_CHAIN_ID)
+      .then(() => this.setChainId(DEFAULT_CHAIN_ID))
+      .catch(this.disconnect);
+
+  disconnect = async () => {
+    try {
+      await (window as any).ethereum.deactivate();
+      this.setAddress(null);
+      this.setChainId(null);
+      this.setProvider(null);
+      this.setSigner(null);
+    } catch (e) {}
+  };
 
   switchChain = async (chainId: CHAIN_ID) => {
     await this.provider?.send("wallet_addEthereumChain", [
