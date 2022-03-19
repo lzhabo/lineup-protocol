@@ -43,7 +43,7 @@ const InvestCardImpl: React.FC = () => {
             <GoBack
               link={ROUTES.INVEST}
               text="Back to Invest"
-              disabled={vm.disabled}
+              disabled={vm.loading}
             />
             <SizedBox height={32} />
             <Content>
