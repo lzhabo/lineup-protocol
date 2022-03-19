@@ -105,7 +105,7 @@ class DashboardVm {
       const profit = amount.times((lock?.basePercent ?? 0) / 100);
 
       totalProfit = totalProfit.plus(profit);
-      totalValue = totalValue.plus(profit).plus(amount);
+      totalValue = totalValue.plus(amount);
     });
 
     this.setTotalLocked(

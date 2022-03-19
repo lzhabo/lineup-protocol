@@ -37,21 +37,25 @@ const InvestCardImpl: React.FC = () => {
   const vm = useInvestCardVM();
   return (
     <Layout>
-      <Root>
-        <GoBack link={ROUTES.INVEST} text="Back to Invest" />
-        <SizedBox height={32} />
-        <Content>
-          <Observer>
-            {() => (
+      <Observer>
+        {() => (
+          <Root>
+            <GoBack
+              link={ROUTES.INVEST}
+              text="Back to Invest"
+              disabled={vm.disabled}
+            />
+            <SizedBox height={32} />
+            <Content>
               <Text textAlign="center" size="title">
                 Invest to {vm.lock?.lockPeriodDays}-day locking period
               </Text>
-            )}
-          </Observer>
-          <SizedBox height={32} />
-          <AmountToLock />
-        </Content>
-      </Root>
+              <SizedBox height={32} />
+              <AmountToLock />
+            </Content>
+          </Root>
+        )}
+      </Observer>
     </Layout>
   );
 };

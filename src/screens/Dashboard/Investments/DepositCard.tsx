@@ -106,8 +106,16 @@ const DepositCard: React.FC<IProps> = ({ box }) => {
     [lock, locked, profit, token?.symbol, unlock]
   );
   const actions = [
-    { title: "Deposit again", onClick: () => vm.reinvest(box.id) },
-    { title: "Withdraw", onClick: () => vm.withdraw(box.id) },
+    {
+      title: "Reinvest",
+      onClick: () => vm.reinvest(box.id),
+      disabled: idLocked,
+    },
+    {
+      title: "Withdraw",
+      onClick: () => vm.withdraw(box.id),
+      disabled: idLocked,
+    },
     // { title: "Emergency unlock", onClick: () => null, disabled: true },
   ];
   if (lock == null || token == null) return <Loading />;

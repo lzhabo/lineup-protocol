@@ -9,10 +9,11 @@ import Text from "@components/Text";
 interface IProps {
   link: string;
   text: string;
+  disabled?: boolean;
 }
 
-const Root = styled(Row)`
-  cursor: pointer;
+const Root = styled(Row)<{ disabled?: boolean }>`
+  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 
   img {
     width: 16px;
@@ -20,14 +21,18 @@ const Root = styled(Row)`
   }
 `;
 
-const GoBack: React.FC<IProps> = ({ link, text }) => {
+const GoBack: React.FC<IProps> = ({ link, text, disabled }) => {
   return (
-    <Root alignItems="center">
+    <Root alignItems="center" {...{ disabled }}>
       <img src={arrow} alt="back" />
       <SizedBox width={8} />
-      <Link to={link}>
+      {disabled ? (
         <Text weight={500}>{text}</Text>
-      </Link>
+      ) : (
+        <Link to={link}>
+          <Text weight={500}>{text}</Text>
+        </Link>
+      )}
     </Root>
   );
 };

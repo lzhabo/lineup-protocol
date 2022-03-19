@@ -108,7 +108,12 @@ const TokenInput: React.FC<IProps> = (props) => {
       />
       <SizedBox height={8} />
       <Row justifyContent="space-between">
-        <Text type={error ? "error" : "secondary"} fitContent>
+        <Text
+          onClick={() => handleChangeAmount(props.balance)}
+          style={{ cursor: "pointer" }}
+          type={error ? "error" : "secondary"}
+          fitContent
+        >
           Balance: {formatBalance} {props.symbol}
         </Text>
         <Row mainAxisSize="fit-content">
