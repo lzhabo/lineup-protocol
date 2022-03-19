@@ -97,7 +97,7 @@ class DashboardVm {
     let totalProfit = BN.ZERO;
     let totalValue = BN.ZERO;
 
-    boxes.forEach(({ lockId, investedAmount: a }) => {
+    this.activeBoxes.forEach(({ lockId, investedAmount: a }) => {
       const lock = locks.find(({ id }) => id === lockId);
       const token = tokens.find(({ address }) => address === lock?.token);
 
