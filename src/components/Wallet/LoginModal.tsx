@@ -8,12 +8,20 @@ import LoginType from "./LoginType";
 import Text from "@components/Text";
 import SizedBox from "@components/SizedBox";
 import { useStores } from "@stores";
+import styled from "@emotion/styled";
 
 interface IProps {
   onClose: () => void;
   // onLogin: (loginType: LOGIN_TYPE) => void;
   visible: boolean;
 }
+
+const Anchor = styled.a`
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #fff;
+`;
 
 const LoginModal: React.FC<IProps> = ({ ...rest }) => {
   const { accountStore } = useStores();
@@ -36,8 +44,14 @@ const LoginModal: React.FC<IProps> = ({ ...rest }) => {
       />
       <SizedBox height={16} />
       <Text weight={500} textAlign="center">
-        <span style={{ color: "#A2A2C0" }}> New to LineUp? </span> Learn more
-        about wallets
+        <span style={{ color: "#A2A2C0" }}> New to LineUp? </span>{" "}
+        <Anchor
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://t.me/nftescape"
+        >
+          Learn more about wallets
+        </Anchor>
       </Text>
     </Dialog>
   );
