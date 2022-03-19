@@ -41,7 +41,7 @@ const Bottom = styled.div`
     padding: 24px 32px;
   }
 `;
-const TotalValueTitle = styled.div`
+const TvlTitle = styled.div`
   color: #ffffff;
   font-size: 26px;
   line-height: 34px;
@@ -59,9 +59,9 @@ const TotalValue: React.FC<IProps> = () => {
   return (
     <Root>
       <Top>
-        <Text size="medium">Total Value</Text>
+        <Text size="medium">Total Value Locked</Text>
         <SizedBox height={8} />
-        <TotalValueTitle>${vm.totalValue?.toFormat(2)}</TotalValueTitle>
+        <TvlTitle>${(vm.totalLocked ?? BN.ZERO).toFormat(2)}</TvlTitle>
       </Top>
       <SizedBox height={2} />
       <Bottom>
@@ -71,8 +71,8 @@ const TotalValue: React.FC<IProps> = () => {
           justifyContent="space-between"
           mainAxisSize="stretch"
         >
-          <Text type="secondary">Total value locked</Text>
-          <Text size="medium">${(vm.totalLocked ?? BN.ZERO).toFormat(2)}</Text>
+          <Text type="secondary">Total value</Text>
+          <Text size="medium">${vm.totalValue?.toFormat(2)}</Text>
         </Column>
         <Column
           crossAxisSize="max"
