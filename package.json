@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
-  "homepage": "https://lineup.org/",
+  "homepage": "https://lineup.finance/",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@emotion/core": "^11.0.0",
@@ -151,7 +151,6 @@
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
     ],
     "testEnvironment": "jsdom",
-    "testRunner": "/Users/lidia/projects/aye/node_modules/jest-circus/runner.js",
     "transform": {
       "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": "<rootDir>/config/jest/babelTransform.js",
       "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",

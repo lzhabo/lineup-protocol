@@ -123,11 +123,12 @@ class AccountStore {
     }
 
     setInterval(this.syncBalances, 10000);
-    this.provider!.on("network", async (network, oldNetwork) => {
-      if (oldNetwork) {
-        window.location.reload();
-      }
-    });
+    this.provider &&
+      this.provider.on("network", async (network, oldNetwork) => {
+        if (oldNetwork) {
+          window.location.reload();
+        }
+      });
   }
 
   balances: TBalance[] = [];
