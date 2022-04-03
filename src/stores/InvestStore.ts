@@ -4,7 +4,7 @@ import { Contract } from "@ethersproject/contracts";
 import moneyBoxAbi from "@src/constants/moneyBoxAbi.json";
 import tokens from "@src/constants/tokens.json";
 
-export const investBoxAddress = "0x4ff3fF09d79D3b5b9483eA3618ecAE6C7De89a9a";
+export const investBoxAddress = "0xaF64B716b665594229e59CF3366cBe9432312De2";
 export const tokenAddress = tokens.find(({ name }) => name === "TestToken")
   ?.address as string;
 export const lnpAddress = tokens.find(({ name }) => name === "LineUpToken")
