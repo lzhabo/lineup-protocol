@@ -2,10 +2,14 @@ import RootStore from "@stores/RootStore";
 import { makeAutoObservable } from "mobx";
 import { Contract } from "@ethersproject/contracts";
 import moneyBoxAbi from "@src/constants/moneyBoxAbi.json";
+import tokens from "@src/constants/tokens.json";
 
-export const investBoxAddress = "0x21C38B25Df2553CeFA5edEcBDFfa6E868f7d563B";
-export const tokenAddress = "0x155e5a920f4d2d18F942FF46022f959148cEA378";
-export const lnpAddress = "0x98932eb833C20e6f85469af8F2Cc7215353C7F5A";
+export const investBoxAddress = "0x4ff3fF09d79D3b5b9483eA3618ecAE6C7De89a9a";
+export const tokenAddress = tokens.find(({ name }) => name === "TestToken")
+  ?.address as string;
+export const lnpAddress = tokens.find(({ name }) => name === "LineUpToken")
+  ?.address as string;
+
 interface ILock {
   basePercent: string;
   lockPeriod: string;
